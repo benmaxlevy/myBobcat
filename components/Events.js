@@ -1,8 +1,8 @@
-import {Component, useEffect, useState} from "react";
-import {View, Text} from "react-native";
+import {useEffect, useState} from "react";
+import {Text, View} from "react-native";
 import {Box, Divider, Heading, ScrollView, Stack, VStack} from 'native-base';
 
-import { API_URL } from '@env';
+import {API_URL} from '@env';
 
 export default function Events() {
     const [events, setEvents] = useState([]);
@@ -11,7 +11,7 @@ export default function Events() {
     useEffect(() => {
         fetch(API_URL + "/events")
             .then((resp) => resp.json())
-            .then((json) => {console.log(json); setEvents(json.events)})
+            .then((json) => {setEvents(json.events)})
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
     }, []);
@@ -26,14 +26,14 @@ export default function Events() {
                     ) : (
                         events.map((post) => {
                             return (
-                                <Stack mb="2.5" mt="1.5" direction="column" space={3}>
+                                <Stack key={post.id} mb="2.5" mt="1.5" direction="column" space={3}>
                                     <Box p="2" bg="#E79F2E" _text={{
                                         fontSize: 'md',
                                         fontWeight: 'medium',
                                         color: 'warmGray.50',
                                         letterSpacing: 'lg'
                                     }} shadow={2}>
-                                        <Text>{post.name} @ {post.date_time}</Text>
+                                        <Text>{post.name} @ {(new Date(post.date_time)).toLocaleString('en-US')}</Text>
                                     </Box>
                                 </Stack>
                             );

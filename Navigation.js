@@ -30,14 +30,10 @@ export default function Navigation() {
                         component={Home}
                         options={{
                             headerTitle: (props) => (
-                                <View style={{
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    width: windowWidth - 136,
-                                }}>
+                                <View style={{ height: 500, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                     <Image
-                                        style={{width: 50, height: 50}}
+                                        style={{width: 50, height: 50, justifyContent: 'center', alignItems: 'center'}}
                                         source={require('./assets/BobcatLogo.png')}
                                         resizeMode='contain'
                                     />
@@ -53,8 +49,7 @@ export default function Navigation() {
                             headerTitle: (props) => (
                                 <View style={{
                                     alignItems: "center",
-                                    justifyContent: "center",
-                                    width: windowWidth - 136,
+                                    justifyContent: "center"
                                 }}>
                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                     <Image
@@ -67,7 +62,7 @@ export default function Navigation() {
                             headerStyle: {backgroundColor: '#424242'}
                         }}
                     />
-                    {jwt ? (
+                    {(jwt !== undefined) ? (
                         <Drawer.Screen
                             name="Logout"
                             component={Logout}
@@ -76,7 +71,6 @@ export default function Navigation() {
                                     <View style={{
                                         alignItems: "center",
                                         justifyContent: "center",
-                                        width: windowWidth - 136,
                                     }}>
                                         <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                         <Image
@@ -98,8 +92,7 @@ export default function Navigation() {
                                     headerTitle: (props) => (
                                         <View style={{
                                             alignItems: "center",
-                                            justifyContent: "center",
-                                            width: windowWidth - 136,
+                                            justifyContent: "center"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                             <Image
@@ -119,8 +112,7 @@ export default function Navigation() {
                                     headerTitle: (props) => (
                                         <View style={{
                                             alignItems: "center",
-                                            justifyContent: "center",
-                                            width: windowWidth - 137,
+                                            justifyContent: "center"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                             <Image

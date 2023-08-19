@@ -40,8 +40,8 @@ export default function Home() {
                         }} shadow={2}>
                             <Heading size="lg" style={{textAlign: "center", color: "white"}}>Mental Health Support is
                                 Here</Heading>
-                            <Text fontSize={"md"} style={{textAlign: "center", color: "white"}}>If you're struggling,
-                                call or text <Text style={{color: "black", fontSize: 20}} bold>988</Text></Text>
+                            <Text fontSize={"md"} style={{textAlign: "center", color: "white"}}>If you or someone else you know is struggling,
+                                calling or texting <Text style={{color: "black", fontSize: 20}} bold>988</Text> is here for you.</Text>
                         </Box>
                     </Stack>
                 </VStack>

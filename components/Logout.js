@@ -1,9 +1,11 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 
 import {Context} from "../Context";
 
 export default function Logout({ navigation }) {
     const { jwt, setJwt } = useContext(Context);
-    setJwt(prevState => "");
+    useEffect(() => {
+        setJwt(prevState => "");
+    }, [])
     return(navigation.navigate('Home'));
 }

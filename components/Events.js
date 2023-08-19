@@ -11,10 +11,19 @@ export default function Events() {
     useEffect(() => {
         fetch(API_URL + "/events")
             .then((resp) => resp.json())
-            .then((json) => {setEvents(json.events)})
+            .then((json) => {
+                e = json.events
+                e.sort((a, b) => {
+                    const dateA = new Date(a.date_time);
+                    const dateB = new Date(b.date_time);
+                    return dateA - dateB;
+                });
+                setEvents(e);
+            })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
     }, []);
+
     return (
         <View>
             <ScrollView>

@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import Grades from './components/Grades';
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -61,6 +62,26 @@ export default function Navigation() {
                             ),
                             headerStyle: {backgroundColor: '#424242'}
                         }}
+                    />
+                    <Drawer.Screen
+                        name="Grade Calculator"
+                        component={Grades}
+                        options={{
+                        headerTitle: (props) => (
+                            <View style={{
+                                alignItems: "center",
+                                justifyContent: "center"
+                            }}>
+                                <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                <Image
+                                    style={{width: 50, height: 50}}
+                                    source={require('./assets/BobcatLogo.png')}
+                                    resizeMode='contain'
+                                />
+                            </View>
+                            ),
+                            headerStyle: {backgroundColor: '#424242'}
+                    }}
                     />
                     {(jwt !== undefined) ? (
                         <Drawer.Screen

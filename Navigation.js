@@ -1,5 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
+
 import {NativeBaseProvider} from 'native-base';
 
 // components
@@ -9,6 +11,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
 import Grades from './components/Grades';
+import Gpa from './components/Gpa';
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -16,7 +19,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Context} from './Context';
 import {useContext} from "react";
 
-export default function Navigation() {
+export default function Navigation({navigation}) {
     const Drawer = createDrawerNavigator();
     const windowWidth = Dimensions.get("window").width;
     const {jwt, setJwt} = useContext(Context);
@@ -30,78 +33,141 @@ export default function Navigation() {
                         name="Home"
                         component={Home}
                         options={{
-                            headerTitle: (props) => (
-                                <View style={{ height: 500, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                    <Image
-                                        style={{width: 50, height: 50, justifyContent: 'center', alignItems: 'center'}}
-                                        source={require('./assets/BobcatLogo.png')}
-                                        resizeMode='contain'
-                                    />
-                                </View>
-                            ),
-                            headerStyle: {backgroundColor: '#424242'}
+                            header: ({navigation}) => {
+                                return (
+                                    <View style={{
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        backgroundColor: "#424242",
+                                        flexDirection: 'row',
+                                        flexWrap: 'wrap',
+                                        maxHeight: "75%"
+                                    }}>
+                                        <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                        <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  color="white" size={30}/>
+                                        <Image
+                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            source={require('./assets/BobcatLogo.png')}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                );
+                            }
                         }}
                     />
                     <Drawer.Screen
                         name="Events"
                         component={Events}
                         options={{
-                            headerTitle: (props) => (
-                                <View style={{
-                                    alignItems: "center",
-                                    justifyContent: "center"
-                                }}>
-                                    <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                    <Image
-                                        style={{width: 50, height: 50}}
-                                        source={require('./assets/BobcatLogo.png')}
-                                        resizeMode='contain'
-                                    />
-                                </View>
-                            ),
-                            headerStyle: {backgroundColor: '#424242'}
+                            header: ({navigation}) => {
+                                return (
+                                    <View style={{
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        backgroundColor: "#424242",
+                                        flexDirection: 'row',
+                                        flexWrap: 'wrap',
+                                        maxHeight: "75%"
+                                    }}>
+                                        <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                        <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  color="white" size={30}/>
+                                        <Image
+                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            source={require('./assets/BobcatLogo.png')}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                );
+                            }
                         }}
                     />
                     <Drawer.Screen
                         name="Grade Calculator"
                         component={Grades}
                         options={{
-                        headerTitle: (props) => (
-                            <View style={{
-                                alignItems: "center",
-                                justifyContent: "center"
-                            }}>
-                                <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                <Image
-                                    style={{width: 50, height: 50}}
-                                    source={require('./assets/BobcatLogo.png')}
-                                    resizeMode='contain'
-                                />
-                            </View>
-                            ),
-                            headerStyle: {backgroundColor: '#424242'}
-                    }}
+                            header: ({navigation}) => {
+                                return (
+                                    <View style={{
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        backgroundColor: "#424242",
+                                        flexDirection: 'row',
+                                        flexWrap: 'wrap',
+                                        maxHeight: "75%"
+                                    }}>
+                                        <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                        <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  color="white" size={30}/>
+                                        <Image
+                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            source={require('./assets/BobcatLogo.png')}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                );
+                            }
+                        }}
+                    />
+                    <Drawer.Screen
+                        name="GPA Calculator"
+                        component={Gpa}
+                        options={{
+                            header: ({navigation}) => {
+                                return (
+                                    <View style={{
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        backgroundColor: "#424242",
+                                        flexDirection: 'row',
+                                        flexWrap: 'wrap',
+                                        maxHeight: "75%"
+                                    }}>
+                                        <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                        <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  color="white" size={30}/>
+                                        <Image
+                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            source={require('./assets/BobcatLogo.png')}
+                                            resizeMode='contain'
+                                        />
+                                    </View>
+                                );
+                            }
+                        }}
                     />
                     {(jwt !== undefined) ? (
                         <Drawer.Screen
                             name="Logout"
                             component={Logout}
                             options={{
-                                headerTitle: (props) => (
-                                    <View style={{
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}>
-                                        <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                        <Image
-                                            style={{width: 50, height: 50}}
-                                            source={require('./assets/BobcatLogo.png')}
-                                            resizeMode='contain'
-                                        />
-                                    </View>
-                                ),
-                                headerStyle: {backgroundColor: '#424242'}
+                                header: ({navigation}) => {
+                                    return (
+                                        <View style={{
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            backgroundColor: "#424242",
+                                            flexDirection: 'row',
+                                            flexWrap: 'wrap',
+                                            maxHeight: "75%"
+                                        }}>
+                                            <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                            <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                      style={{position: "absolute", left: "2.5%", top: "50%"}}
+                                                      name="menu" color="white" size={30}/>
+                                            <Image
+                                                style={{width: 50, height: 50, marginTop: "20%"}}
+                                                source={require('./assets/BobcatLogo.png')}
+                                                resizeMode='contain'
+                                            />
+                                        </View>
+                                    );
+                                }
                             }}
                         />
                     ) : (
@@ -110,40 +176,56 @@ export default function Navigation() {
                                 name="Login"
                                 component={Login}
                                 options={{
-                                    headerTitle: (props) => (
-                                        <View style={{
-                                            alignItems: "center",
-                                            justifyContent: "center"
-                                        }}>
-                                            <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                            <Image
-                                                style={{width: 50, height: 50}}
-                                                source={require('./assets/BobcatLogo.png')}
-                                                resizeMode='contain'
-                                            />
-                                        </View>
-                                    ),
-                                    headerStyle: {backgroundColor: '#424242'}
+                                    header: ({navigation}) => {
+                                        return (
+                                            <View style={{
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                backgroundColor: "#424242",
+                                                flexDirection: 'row',
+                                                flexWrap: 'wrap',
+                                                maxHeight: "75%"
+                                            }}>
+                                                <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                          style={{position: "absolute", left: "2.5%", top: "50%"}}
+                                                          name="menu" color="white" size={30}/>
+                                                <Image
+                                                    style={{width: 50, height: 50, marginTop: "20%"}}
+                                                    source={require('./assets/BobcatLogo.png')}
+                                                    resizeMode='contain'
+                                                />
+                                            </View>
+                                        );
+                                    }
                                 }}
                             />
                             <Drawer.Screen
                                 name="Register"
                                 component={Register}
                                 options={{
-                                    headerTitle: (props) => (
-                                        <View style={{
-                                            alignItems: "center",
-                                            justifyContent: "center"
-                                        }}>
-                                            <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                            <Image
-                                                style={{width: 50, height: 50}}
-                                                source={require('./assets/BobcatLogo.png')}
-                                                resizeMode='contain'
-                                            />
-                                        </View>
-                                    ),
-                                    headerStyle: {backgroundColor: '#424242'}
+                                    header: ({navigation}) => {
+                                        return (
+                                            <View style={{
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                backgroundColor: "#424242",
+                                                flexDirection: 'row',
+                                                flexWrap: 'wrap',
+                                                maxHeight: "75%"
+                                            }}>
+                                                <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                          style={{position: "absolute", left: "2.5%", top: "50%"}}
+                                                          name="menu" color="white" size={30}/>
+                                                <Image
+                                                    style={{width: 50, height: 50, marginTop: "20%"}}
+                                                    source={require('./assets/BobcatLogo.png')}
+                                                    resizeMode='contain'
+                                                />
+                                            </View>
+                                        );
+                                    }
                                 }}/>
                         </>
                     )}

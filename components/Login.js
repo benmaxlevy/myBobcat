@@ -6,8 +6,11 @@ import {Context} from "../Context";
 
 import {API_URL} from '@env';
 
-if(!API_URL)
-    API_URL = process.env.API_URL || "https://mybobcat.simplexwebsites.com";
+let API = API_URL
+
+if(!API_URL) {
+    API = "https://mybobcat.simplexwebsites.com";
+}
 
 export default function Login({navigation}) {
     const {jwt, setJwt} = useContext(Context);
@@ -18,7 +21,7 @@ export default function Login({navigation}) {
 
     const login = (email, password) => {
 
-        fetch(API_URL + "/login", {
+        fetch(API + "/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",

@@ -4,8 +4,11 @@ import {Alert, Box, Button, Divider, Heading, Input, VStack} from 'native-base';
 
 import {API_URL} from '@env';
 
-if(!API_URL)
-    API_URL = process.env.API_URL || "https://mybobcat.simplexwebsites.com";
+let API = API_URL
+
+if(!API_URL) {
+    API = "https://mybobcat.simplexwebsites.com";
+}
 
 export default function Register({navigation}) {
     const [email, setEmail] = useState('');
@@ -25,7 +28,7 @@ export default function Register({navigation}) {
         // check email's format first
         if (!validateEmail(email))
             return setError(true);
-        fetch(API_URL + "/register", {
+        fetch(API + "/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",

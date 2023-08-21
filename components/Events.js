@@ -5,8 +5,11 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import {API_URL} from '@env';
 
-if(!API_URL)
-    API_URL = process.env.API_URL || "https://mybobcat.simplexwebsites.com";
+let API = API_URL
+
+if(!API_URL) {
+    API = "https://mybobcat.simplexwebsites.com";
+}
 
 import {Context} from '../Context';
 import {useContext} from "react";
@@ -32,7 +35,7 @@ export default function Events({navigation}) {
     const {jwt, setJwt} = useContext(Context);
 
     const refetchEvents = () => {
-        fetch(API_URL + "/events")
+        fetch(API + "/events")
             .then((resp) => resp.json())
             .then((json) => {
                 let e = json.events
@@ -50,7 +53,7 @@ export default function Events({navigation}) {
     useEffect(
         () => {
             navigation.addListener("focus", _ => {
-                fetch(API_URL + "/events")
+                fetch(API + "/events")
                 .then((resp) => resp.json())
                 .then((json) => {
                     let e = json.events
@@ -67,7 +70,7 @@ export default function Events({navigation}) {
         }, [navigation]);
 
     const deletePost = id => {
-        fetch(API_URL + "/events/" + id, {
+        fetch(API + "/events/" + id, {
             method: "DELETE",
             headers: {
                 "Authorization": jwt.jwt
@@ -94,7 +97,7 @@ export default function Events({navigation}) {
     const postEvent = (name, datetime) => {
         // type is either "post" or "put"
         if (type === "post") {
-            fetch(API_URL + "/events", {
+            fetch(API + "/events", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
@@ -126,7 +129,7 @@ export default function Events({navigation}) {
                     setError(true);
                 });
         } else if (type === "put") {
-            fetch(API_URL + "/events/" + id, {
+            fetch(API + "/events/" + id, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",

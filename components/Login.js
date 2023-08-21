@@ -6,6 +6,9 @@ import {Context} from "../Context";
 
 import {API_URL} from '@env';
 
+if(!API_URL)
+    API_URL = process.env.API_URL;
+
 export default function Login({navigation}) {
     const {jwt, setJwt} = useContext(Context);
 

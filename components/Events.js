@@ -6,7 +6,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {API_URL} from '@env';
 
 if(!API_URL)
-    API_URL = process.env.API_URL;
+    API_URL = process.env.API_URL || "https://mybobcat.simplexwebsites.com";
 
 import {Context} from '../Context';
 import {useContext} from "react";

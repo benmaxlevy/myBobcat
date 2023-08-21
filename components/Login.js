@@ -7,7 +7,7 @@ import {Context} from "../Context";
 import {API_URL} from '@env';
 
 if(!API_URL)
-    API_URL = process.env.API_URL;
+    API_URL = process.env.API_URL || "https://mybobcat.simplexwebsites.com";
 
 export default function Login({navigation}) {
     const {jwt, setJwt} = useContext(Context);

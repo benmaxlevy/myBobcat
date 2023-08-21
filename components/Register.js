@@ -5,7 +5,7 @@ import {Alert, Box, Button, Divider, Heading, Input, VStack} from 'native-base';
 import {API_URL} from '@env';
 
 if(!API_URL)
-    API_URL = process.env.API_URL;
+    API_URL = process.env.API_URL || "https://mybobcat.simplexwebsites.com";
 
 export default function Register({navigation}) {
     const [email, setEmail] = useState('');

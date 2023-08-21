@@ -46,7 +46,8 @@ export default function Events({navigation}) {
 
     useEffect(
         () => {
-            fetch(API_URL + "/events")
+            navigation.addListener("focus", _ => {
+                fetch(API_URL + "/events")
                 .then((resp) => resp.json())
                 .then((json) => {
                     let e = json.events
@@ -59,7 +60,8 @@ export default function Events({navigation}) {
                 })
                 .catch((error) => console.error(error))
                 .finally(() => setLoading(false));
-        }, []);
+            });
+        }, [navigation]);
 
     const deletePost = id => {
         fetch(API_URL + "/events/" + id, {

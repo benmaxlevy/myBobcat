@@ -1,5 +1,14 @@
 {
   "expo": {
+
+    "plugins": [
+      ["expo-build-properties", {
+        "android": {
+          "usesCleartextTraffic": true
+        }
+      }]
+    ],
+
     "name": "myBobcat",
     "slug": "myBobcat",
     "version": "1.0.0",
@@ -15,16 +24,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.blaksky.myBobcat"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.blaksky.myBobcat",
+      "permissions": ["android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9dd3a21c-3869-4a94-9c4f-9efb221f21a2"
+      }
     }
   }
 }

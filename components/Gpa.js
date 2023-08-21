@@ -119,7 +119,7 @@ export default function Gpa() {
                                 )
                             })
                         }
-                        <Button w={"50%"} style={{marginBottom: 5, alignSelf: "center", justifyContent: "flex-start"}}
+                        <Button w={"50%"} style={{marginVertical: 5, alignSelf: "center", justifyContent: "flex-start"}}
                                 onPress={_ => setClasses([...classes, {title: "", grade: 4.6, credits: 1.0}])}>Add a
                             Class</Button>
                     </Box>

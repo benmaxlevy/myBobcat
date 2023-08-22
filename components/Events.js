@@ -271,7 +271,7 @@ export default function Events({navigation}) {
                                                             justifyContent: "center",
                                                             alignItems: "center"
                                                         }}>
-                                                            <Button w="20%" onPress={() => {
+                                                            <Button w="25%" onPress={() => {
                                                                 setName(post.name);
                                                                 setDatetime(post.date_time);
                                                                 setType("put");
@@ -279,7 +279,7 @@ export default function Events({navigation}) {
                                                                 return setShowModal(true);
                                                             }
                                                             }>Edit</Button>
-                                                            <Button w="20%" style={{
+                                                            <Button w="25%" style={{
                                                                 backgroundColor: "#E8003F",
                                                                 marginHorizontal: 5
                                                             }} onPress={() => deletePost(post.id)}>Delete</Button>

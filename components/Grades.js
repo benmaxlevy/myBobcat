@@ -5,13 +5,12 @@ export default function Grades() {
     const numberToGrade = {
         0: "F",
         1: "D",
-        2: "D+",
-        3: "C",
-        4: "C+",
-        5: "B",
-        6: "B+",
-        7: "A",
-        8: "A+"
+        2: "C",
+        3: "C+",
+        4: "B",
+        5: "B+",
+        6: "A",
+        7: "A+"
     };
 
 
@@ -76,13 +75,12 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ1(itemValue)}>
-                    <Select.Item label="A+" value={8}/>
-                    <Select.Item label="A" value={7}/>
-                    <Select.Item label="B+" value={6}/>
-                    <Select.Item label="B" value={5}/>
-                    <Select.Item label="C+" value={4}/>
-                    <Select.Item label="C" value={3}/>
-                    <Select.Item label="D+" value={2}/>
+                    <Select.Item label="A+" value={7}/>
+                    <Select.Item label="A" value={6}/>
+                    <Select.Item label="B+" value={5}/>
+                    <Select.Item label="B" value={4}/>
+                    <Select.Item label="C+" value={3}/>
+                    <Select.Item label="C" value={2}/>
                     <Select.Item label="D" value={1}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
@@ -91,13 +89,12 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ2(itemValue)}>
-                    <Select.Item label="A+" value={8}/>
-                    <Select.Item label="A" value={7}/>
-                    <Select.Item label="B+" value={6}/>
-                    <Select.Item label="B" value={5}/>
-                    <Select.Item label="C+" value={4}/>
-                    <Select.Item label="C" value={3}/>
-                    <Select.Item label="D+" value={2}/>
+                    <Select.Item label="A+" value={7}/>
+                    <Select.Item label="A" value={6}/>
+                    <Select.Item label="B+" value={5}/>
+                    <Select.Item label="B" value={4}/>
+                    <Select.Item label="C+" value={3}/>
+                    <Select.Item label="C" value={2}/>
                     <Select.Item label="D" value={1}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
@@ -106,13 +103,12 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ3(itemValue)}>
-                    <Select.Item label="A+" value={8}/>
-                    <Select.Item label="A" value={7}/>
-                    <Select.Item label="B+" value={6}/>
-                    <Select.Item label="B" value={5}/>
-                    <Select.Item label="C+" value={4}/>
-                    <Select.Item label="C" value={3}/>
-                    <Select.Item label="D+" value={2}/>
+                    <Select.Item label="A+" value={7}/>
+                    <Select.Item label="A" value={6}/>
+                    <Select.Item label="B+" value={5}/>
+                    <Select.Item label="B" value={4}/>
+                    <Select.Item label="C+" value={3}/>
+                    <Select.Item label="C" value={2}/>
                     <Select.Item label="D" value={1}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
@@ -121,13 +117,12 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ4(itemValue)}>
-                    <Select.Item label="A+" value={8}/>
-                    <Select.Item label="A" value={7}/>
-                    <Select.Item label="B+" value={6}/>
-                    <Select.Item label="B" value={5}/>
-                    <Select.Item label="C+" value={4}/>
-                    <Select.Item label="C" value={3}/>
-                    <Select.Item label="D+" value={2}/>
+                    <Select.Item label="A+" value={7}/>
+                    <Select.Item label="A" value={6}/>
+                    <Select.Item label="B+" value={5}/>
+                    <Select.Item label="B" value={4}/>
+                    <Select.Item label="C+" value={3}/>
+                    <Select.Item label="C" value={2}/>
                     <Select.Item label="D" value={1}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
@@ -136,14 +131,12 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setFinal(itemValue)}>
-                    <Select.Item label="No Final Exam" value={0}/>
-                    <Select.Item label="A+" value={8}/>
-                    <Select.Item label="A" value={7}/>
-                    <Select.Item label="B+" value={6}/>
-                    <Select.Item label="B" value={5}/>
-                    <Select.Item label="C+" value={4}/>
-                    <Select.Item label="C" value={3}/>
-                    <Select.Item label="D+" value={2}/>
+                    <Select.Item label="A+" value={7}/>
+                    <Select.Item label="A" value={6}/>
+                    <Select.Item label="B+" value={5}/>
+                    <Select.Item label="B" value={4}/>
+                    <Select.Item label="C+" value={3}/>
+                    <Select.Item label="C" value={2}/>
                     <Select.Item label="D" value={1}/>
                     <Select.Item label="F" value={"0"}/>
                 </Select>

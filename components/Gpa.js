@@ -111,7 +111,7 @@ export default function Gpa() {
                                             <Select.Item label="B" value={3.0}/>
                                             <Select.Item label="C+" value={2.6}/>
                                             <Select.Item label="C" value={2.0}/>
-                                            <Select.Item label="D+" value={1.0}/>
+                                            <Select.Item label="D" value={1.0}/>
                                             <Select.Item label="F" value={0.0}/>
                                         </Select>
                                     </FormControl>

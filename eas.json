@@ -23,6 +23,12 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "theappmaker8@gmail.com",
+        "ascAppId": "6462968639",
+        "appleTeamId": "34S7D3KV54"
+      }
+    }
   }
 }

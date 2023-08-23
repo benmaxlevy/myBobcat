@@ -40,16 +40,20 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight * 0.1,
+                                            maxHeight: windowHeight,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
                                             <View style={{width: "100%", alignItems: "center"}}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                    name="menu"
-                                                    color="white" size={windowWidth*0.075}
-                                                    style={{marginLeft: windowWidth * 0.01, position: "absolute", left: 5}}
+                                                          name="menu"
+                                                          color="white" size={windowWidth * 0.075}
+                                                          style={{
+                                                              marginLeft: windowWidth * 0.01,
+                                                              position: "absolute",
+                                                              left: 5
+                                                          }}
                                                 />
                                                 <Image
                                                     style={{width: windowHeight * 0.05, height: windowHeight * 0.05}}
@@ -57,7 +61,6 @@ export default function Navigation({navigation}) {
                                                     resizeMode='contain'
                                                 />
                                             </View>
-
                                         </SafeAreaView>
                                     );
                                 }
@@ -69,25 +72,30 @@ export default function Navigation({navigation}) {
                             options={{
                                 header: ({navigation}) => {
                                     return (
-                                        <View style={{
-                                            alignItems: "center",
-                                            justifyContent: "center",
+                                        <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            flexDirection: 'row',
-                                            flexWrap: 'wrap',
-                                            maxHeight: "75%"
+                                            maxHeight: windowHeight * 0.1,
+                                            flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                            <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                      style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                      name="menu"
-                                                      color="white" size={30}/>
-                                            <Image
-                                                style={{width: 50, height: 50, marginTop: "20%"}}
-                                                source={require('./assets/BobcatLogo.png')}
-                                                resizeMode='contain'
-                                            />
-                                        </View>
+
+                                            <View style={{width: "100%", alignItems: "center"}}>
+                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                          name="menu"
+                                                          color="white" size={windowWidth * 0.075}
+                                                          style={{
+                                                              marginLeft: windowWidth * 0.01,
+                                                              position: "absolute",
+                                                              left: 5
+                                                          }}
+                                                />
+                                                <Image
+                                                    style={{width: windowHeight * 0.05, height: windowHeight * 0.05}}
+                                                    source={require('./assets/BobcatLogo.png')}
+                                                    resizeMode='contain'
+                                                />
+                                            </View>
+                                        </SafeAreaView>
                                     );
                                 }
                             }}
@@ -98,25 +106,30 @@ export default function Navigation({navigation}) {
                             options={{
                                 header: ({navigation}) => {
                                     return (
-                                        <View style={{
-                                            alignItems: "center",
-                                            justifyContent: "center",
+                                        <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            flexDirection: 'row',
-                                            flexWrap: 'wrap',
-                                            maxHeight: "75%"
+                                            maxHeight: windowHeight * 0.1,
+                                            flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                            <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                      style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                      name="menu"
-                                                      color="white" size={30}/>
-                                            <Image
-                                                style={{width: 50, height: 50, marginTop: "20%"}}
-                                                source={require('./assets/BobcatLogo.png')}
-                                                resizeMode='contain'
-                                            />
-                                        </View>
+
+                                            <View style={{width: "100%", alignItems: "center"}}>
+                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                          name="menu"
+                                                          color="white" size={windowWidth * 0.075}
+                                                          style={{
+                                                              marginLeft: windowWidth * 0.01,
+                                                              position: "absolute",
+                                                              left: 5
+                                                          }}
+                                                />
+                                                <Image
+                                                    style={{width: windowHeight * 0.05, height: windowHeight * 0.05}}
+                                                    source={require('./assets/BobcatLogo.png')}
+                                                    resizeMode='contain'
+                                                />
+                                            </View>
+                                        </SafeAreaView>
                                     );
                                 }
                             }}
@@ -127,25 +140,30 @@ export default function Navigation({navigation}) {
                             options={{
                                 header: ({navigation}) => {
                                     return (
-                                        <View style={{
-                                            alignItems: "center",
-                                            justifyContent: "center",
+                                        <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            flexDirection: 'row',
-                                            flexWrap: 'wrap',
-                                            maxHeight: "75%"
+                                            maxHeight: windowHeight * 0.1,
+                                            flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                            <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                      style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                      name="menu"
-                                                      color="white" size={30}/>
-                                            <Image
-                                                style={{width: 50, height: 50, marginTop: "20%"}}
-                                                source={require('./assets/BobcatLogo.png')}
-                                                resizeMode='contain'
-                                            />
-                                        </View>
+
+                                            <View style={{width: "100%", alignItems: "center"}}>
+                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                          name="menu"
+                                                          color="white" size={windowWidth * 0.075}
+                                                          style={{
+                                                              marginLeft: windowWidth * 0.01,
+                                                              position: "absolute",
+                                                              left: 5
+                                                          }}
+                                                />
+                                                <Image
+                                                    style={{width: windowHeight * 0.05, height: windowHeight * 0.05}}
+                                                    source={require('./assets/BobcatLogo.png')}
+                                                    resizeMode='contain'
+                                                />
+                                            </View>
+                                        </SafeAreaView>
                                     );
                                 }
                             }}
@@ -157,24 +175,33 @@ export default function Navigation({navigation}) {
                                 options={{
                                     header: ({navigation}) => {
                                         return (
-                                            <View style={{
-                                                alignItems: "center",
-                                                justifyContent: "center",
+                                            <SafeAreaView style={{
                                                 backgroundColor: "#424242",
-                                                flexDirection: 'row',
-                                                flexWrap: 'wrap',
-                                                maxHeight: "75%"
+                                                maxHeight: windowHeight * 0.1,
+                                                flexDirection: "row"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                          style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                          name="menu" color="white" size={30}/>
-                                                <Image
-                                                    style={{width: 50, height: 50, marginTop: "20%"}}
-                                                    source={require('./assets/BobcatLogo.png')}
-                                                    resizeMode='contain'
-                                                />
-                                            </View>
+
+                                                <View style={{width: "100%", alignItems: "center"}}>
+                                                    <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                              name="menu"
+                                                              color="white" size={windowWidth * 0.075}
+                                                              style={{
+                                                                  marginLeft: windowWidth * 0.01,
+                                                                  position: "absolute",
+                                                                  left: 5
+                                                              }}
+                                                    />
+                                                    <Image
+                                                        style={{
+                                                            width: windowHeight * 0.05,
+                                                            height: windowHeight * 0.05
+                                                        }}
+                                                        source={require('./assets/BobcatLogo.png')}
+                                                        resizeMode='contain'
+                                                    />
+                                                </View>
+                                            </SafeAreaView>
                                         );
                                     }
                                 }}
@@ -187,24 +214,33 @@ export default function Navigation({navigation}) {
                                     options={{
                                         header: ({navigation}) => {
                                             return (
-                                                <View style={{
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
+                                                <SafeAreaView style={{
                                                     backgroundColor: "#424242",
-                                                    flexDirection: 'row',
-                                                    flexWrap: 'wrap',
-                                                    maxHeight: "75%"
+                                                    maxHeight: windowHeight * 0.1,
+                                                    flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                                    <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                              style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                              name="menu" color="white" size={30}/>
-                                                    <Image
-                                                        style={{width: 50, height: 50, marginTop: "20%"}}
-                                                        source={require('./assets/BobcatLogo.png')}
-                                                        resizeMode='contain'
-                                                    />
-                                                </View>
+
+                                                    <View style={{width: "100%", alignItems: "center"}}>
+                                                        <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                                  name="menu"
+                                                                  color="white" size={windowWidth * 0.075}
+                                                                  style={{
+                                                                      marginLeft: windowWidth * 0.01,
+                                                                      position: "absolute",
+                                                                      left: 5
+                                                                  }}
+                                                        />
+                                                        <Image
+                                                            style={{
+                                                                width: windowHeight * 0.05,
+                                                                height: windowHeight * 0.05
+                                                            }}
+                                                            source={require('./assets/BobcatLogo.png')}
+                                                            resizeMode='contain'
+                                                        />
+                                                    </View>
+                                                </SafeAreaView>
                                             );
                                         }
                                     }}
@@ -215,24 +251,33 @@ export default function Navigation({navigation}) {
                                     options={{
                                         header: ({navigation}) => {
                                             return (
-                                                <View style={{
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
+                                                <SafeAreaView style={{
                                                     backgroundColor: "#424242",
-                                                    flexDirection: 'row',
-                                                    flexWrap: 'wrap',
-                                                    maxHeight: "75%"
+                                                    maxHeight: windowHeight * 0.1,
+                                                    flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
-                                                    <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                              style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                              name="menu" color="white" size={30}/>
-                                                    <Image
-                                                        style={{width: 50, height: 50, marginTop: "20%"}}
-                                                        source={require('./assets/BobcatLogo.png')}
-                                                        resizeMode='contain'
-                                                    />
-                                                </View>
+
+                                                    <View style={{width: "100%", alignItems: "center"}}>
+                                                        <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                                  name="menu"
+                                                                  color="white" size={windowWidth * 0.075}
+                                                                  style={{
+                                                                      marginLeft: windowWidth * 0.01,
+                                                                      position: "absolute",
+                                                                      left: 5
+                                                                  }}
+                                                        />
+                                                        <Image
+                                                            style={{
+                                                                width: windowHeight * 0.05,
+                                                                height: windowHeight * 0.05
+                                                            }}
+                                                            source={require('./assets/BobcatLogo.png')}
+                                                            resizeMode='contain'
+                                                        />
+                                                    </View>
+                                                </SafeAreaView>
                                             );
                                         }
                                     }}/>

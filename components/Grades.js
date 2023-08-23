@@ -131,6 +131,7 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setFinal(itemValue)}>
+                    <Select.Item label="No Final Exam" value={0}/>
                     <Select.Item label="A+" value={7}/>
                     <Select.Item label="A" value={6}/>
                     <Select.Item label="B+" value={5}/>

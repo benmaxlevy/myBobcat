@@ -74,7 +74,7 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight * 0.1,
+                                            maxHeight: windowHeight,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -108,7 +108,7 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight * 0.1,
+                                            maxHeight: windowHeight,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -142,7 +142,7 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight * 0.1,
+                                            maxHeight: windowHeight,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -177,7 +177,7 @@ export default function Navigation({navigation}) {
                                         return (
                                             <SafeAreaView style={{
                                                 backgroundColor: "#424242",
-                                                maxHeight: windowHeight * 0.1,
+                                                maxHeight: windowHeight,
                                                 flexDirection: "row"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -216,7 +216,7 @@ export default function Navigation({navigation}) {
                                             return (
                                                 <SafeAreaView style={{
                                                     backgroundColor: "#424242",
-                                                    maxHeight: windowHeight * 0.1,
+                                                    maxHeight: windowHeight,
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -253,7 +253,7 @@ export default function Navigation({navigation}) {
                                             return (
                                                 <SafeAreaView style={{
                                                     backgroundColor: "#424242",
-                                                    maxHeight: windowHeight * 0.1,
+                                                    maxHeight: windowHeight,
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>

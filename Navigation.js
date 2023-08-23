@@ -40,15 +40,20 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight,
+                                            maxHeight: windowHeight * 0.25,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                            <View style={{width: "100%", alignItems: "center"}}>
+                                            <View style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                alignItems: "center",
+                                                justifyContent: "center"
+                                            }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
-                                                          color="white" size={windowWidth * 0.075}
+                                                          color="white" size={35}
                                                           style={{
                                                               marginLeft: windowWidth * 0.01,
                                                               position: "absolute",
@@ -74,15 +79,20 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight,
+                                            maxHeight: windowHeight * 0.25,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                            <View style={{width: "100%", alignItems: "center"}}>
+                                            <View style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                alignItems: "center",
+                                                justifyContent: "center"
+                                            }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
-                                                          color="white" size={windowWidth * 0.075}
+                                                          color="white" size={35}
                                                           style={{
                                                               marginLeft: windowWidth * 0.01,
                                                               position: "absolute",
@@ -108,15 +118,20 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight,
+                                            maxHeight: windowHeight * 0.25,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                            <View style={{width: "100%", alignItems: "center"}}>
+                                            <View style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                alignItems: "center",
+                                                justifyContent: "center"
+                                            }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
-                                                          color="white" size={windowWidth * 0.075}
+                                                          color="white" size={35}
                                                           style={{
                                                               marginLeft: windowWidth * 0.01,
                                                               position: "absolute",
@@ -142,15 +157,20 @@ export default function Navigation({navigation}) {
                                     return (
                                         <SafeAreaView style={{
                                             backgroundColor: "#424242",
-                                            maxHeight: windowHeight,
+                                            maxHeight: windowHeight * 0.25,
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                            <View style={{width: "100%", alignItems: "center"}}>
+                                            <View style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                alignItems: "center",
+                                                justifyContent: "center"
+                                            }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
-                                                          color="white" size={windowWidth * 0.075}
+                                                          color="white" size={35}
                                                           style={{
                                                               marginLeft: windowWidth * 0.01,
                                                               position: "absolute",
@@ -177,15 +197,20 @@ export default function Navigation({navigation}) {
                                         return (
                                             <SafeAreaView style={{
                                                 backgroundColor: "#424242",
-                                                maxHeight: windowHeight,
+                                                maxHeight: windowHeight * 0.25,
                                                 flexDirection: "row"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                                <View style={{width: "100%", alignItems: "center"}}>
+                                                <View style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    alignItems: "center",
+                                                    justifyContent: "center"
+                                                }}>
                                                     <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                               name="menu"
-                                                              color="white" size={windowWidth * 0.075}
+                                                              color="white" size={35}
                                                               style={{
                                                                   marginLeft: windowWidth * 0.01,
                                                                   position: "absolute",
@@ -216,15 +241,20 @@ export default function Navigation({navigation}) {
                                             return (
                                                 <SafeAreaView style={{
                                                     backgroundColor: "#424242",
-                                                    maxHeight: windowHeight,
+                                                    maxHeight: windowHeight * 0.25,
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                                    <View style={{width: "100%", alignItems: "center"}}>
+                                                    <View style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        alignItems: "center",
+                                                        justifyContent: "center"
+                                                    }}>
                                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                                   name="menu"
-                                                                  color="white" size={windowWidth * 0.075}
+                                                                  color="white" size={35}
                                                                   style={{
                                                                       marginLeft: windowWidth * 0.01,
                                                                       position: "absolute",
@@ -253,15 +283,20 @@ export default function Navigation({navigation}) {
                                             return (
                                                 <SafeAreaView style={{
                                                     backgroundColor: "#424242",
-                                                    maxHeight: windowHeight,
+                                                    maxHeight: windowHeight * 0.25,
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
 
-                                                    <View style={{width: "100%", alignItems: "center"}}>
+                                                    <View style={{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        alignItems: "center",
+                                                        justifyContent: "center"
+                                                    }}>
                                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                                   name="menu"
-                                                                  color="white" size={windowWidth * 0.075}
+                                                                  color="white" size={35}
                                                                   style={{
                                                                       marginLeft: windowWidth * 0.01,
                                                                       position: "absolute",

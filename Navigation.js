@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
-import {NativeBaseProvider} from 'native-base';
+import {NativeBaseProvider, SafeAreaView} from 'native-base';
 
 // components
 import Events from './components/Events';
@@ -35,7 +35,7 @@ export default function Navigation({navigation}) {
                         options={{
                             header: ({navigation}) => {
                                 return (
-                                    <View style={{
+                                    <SafeAreaView style={{
                                         alignItems: "center",
                                         justifyContent: "center",
                                         backgroundColor: "#424242",
@@ -52,7 +52,7 @@ export default function Navigation({navigation}) {
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
-                                    </View>
+                                    </SafeAreaView>
                                 );
                             }
                         }}
@@ -63,7 +63,7 @@ export default function Navigation({navigation}) {
                         options={{
                             header: ({navigation}) => {
                                 return (
-                                    <View style={{
+                                    <SafeAreaView style={{
                                         alignItems: "center",
                                         justifyContent: "center",
                                         backgroundColor: "#424242",
@@ -80,7 +80,7 @@ export default function Navigation({navigation}) {
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
-                                    </View>
+                                    </SafeAreaView>
                                 );
                             }
                         }}
@@ -91,7 +91,7 @@ export default function Navigation({navigation}) {
                         options={{
                             header: ({navigation}) => {
                                 return (
-                                    <View style={{
+                                    <SafeAreaView style={{
                                         alignItems: "center",
                                         justifyContent: "center",
                                         backgroundColor: "#424242",
@@ -108,7 +108,7 @@ export default function Navigation({navigation}) {
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
-                                    </View>
+                                    </SafeAreaView>
                                 );
                             }
                         }}
@@ -119,7 +119,7 @@ export default function Navigation({navigation}) {
                         options={{
                             header: ({navigation}) => {
                                 return (
-                                    <View style={{
+                                    <SafeAreaView style={{
                                         alignItems: "center",
                                         justifyContent: "center",
                                         backgroundColor: "#424242",
@@ -136,7 +136,7 @@ export default function Navigation({navigation}) {
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
-                                    </View>
+                                    </SafeAreaView>
                                 );
                             }
                         }}
@@ -148,7 +148,7 @@ export default function Navigation({navigation}) {
                             options={{
                                 header: ({navigation}) => {
                                     return (
-                                        <View style={{
+                                        <SafeAreaView style={{
                                             alignItems: "center",
                                             justifyContent: "center",
                                             backgroundColor: "#424242",
@@ -165,7 +165,7 @@ export default function Navigation({navigation}) {
                                                 source={require('./assets/BobcatLogo.png')}
                                                 resizeMode='contain'
                                             />
-                                        </View>
+                                        </SafeAreaView>
                                     );
                                 }
                             }}
@@ -178,7 +178,7 @@ export default function Navigation({navigation}) {
                                 options={{
                                     header: ({navigation}) => {
                                         return (
-                                            <View style={{
+                                            <SafeAreaView style={{
                                                 alignItems: "center",
                                                 justifyContent: "center",
                                                 backgroundColor: "#424242",
@@ -195,7 +195,7 @@ export default function Navigation({navigation}) {
                                                     source={require('./assets/BobcatLogo.png')}
                                                     resizeMode='contain'
                                                 />
-                                            </View>
+                                            </SafeAreaView>
                                         );
                                     }
                                 }}
@@ -206,7 +206,7 @@ export default function Navigation({navigation}) {
                                 options={{
                                     header: ({navigation}) => {
                                         return (
-                                            <View style={{
+                                            <SafeAreaView style={{
                                                 alignItems: "center",
                                                 justifyContent: "center",
                                                 backgroundColor: "#424242",
@@ -223,7 +223,7 @@ export default function Navigation({navigation}) {
                                                     source={require('./assets/BobcatLogo.png')}
                                                     resizeMode='contain'
                                                 />
-                                            </View>
+                                            </SafeAreaView>
                                         );
                                     }
                                 }}/>

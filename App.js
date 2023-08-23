@@ -7,6 +7,7 @@ import {Context, ContextProvider} from './Context';
 import {useContext} from "react";
 
 import Navigation from "./Navigation";
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export default function App() {
     const Drawer = createDrawerNavigator();
@@ -14,7 +15,9 @@ export default function App() {
     const { jwt, setJwt } = useContext(Context);
     return (
         <ContextProvider>
-            <Navigation/>
+            <SafeAreaProvider>
+                <Navigation/>
+            </SafeAreaProvider>
         </ContextProvider>
     );
 }

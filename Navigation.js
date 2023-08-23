@@ -2,7 +2,8 @@ import {StatusBar} from 'expo-status-bar';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
-import {NativeBaseProvider, SafeAreaView} from 'native-base';
+import {NativeBaseProvider} from 'native-base';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 // components
 import Events from './components/Events';
@@ -41,14 +42,14 @@ export default function Navigation({navigation}) {
                                         backgroundColor: "#424242",
                                         flexDirection: 'row',
                                         flexWrap: 'wrap',
-                                        maxHeight: "75%"
+                                        height: "33%"
                                     }}>
                                         <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  style={{position: "absolute", left: "2.5%", top: "70%"}} name="menu"
                                                   color="white" size={30}/>
                                         <Image
-                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
@@ -69,14 +70,14 @@ export default function Navigation({navigation}) {
                                         backgroundColor: "#424242",
                                         flexDirection: 'row',
                                         flexWrap: 'wrap',
-                                        maxHeight: "75%"
+                                        height: "33%"
                                     }}>
                                         <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  style={{position: "absolute", left: "2.5%", top: "70%"}} name="menu"
                                                   color="white" size={30}/>
                                         <Image
-                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
@@ -97,14 +98,14 @@ export default function Navigation({navigation}) {
                                         backgroundColor: "#424242",
                                         flexDirection: 'row',
                                         flexWrap: 'wrap',
-                                        maxHeight: "75%"
+                                        height: "33%"
                                     }}>
                                         <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  style={{position: "absolute", left: "2.5%", top: "70%"}} name="menu"
                                                   color="white" size={30}/>
                                         <Image
-                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
@@ -125,14 +126,14 @@ export default function Navigation({navigation}) {
                                         backgroundColor: "#424242",
                                         flexDirection: 'row',
                                         flexWrap: 'wrap',
-                                        maxHeight: "75%"
+                                        height: "33%"
                                     }}>
                                         <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                  style={{position: "absolute", left: "2.5%", top: "50%"}} name="menu"
+                                                  style={{position: "absolute", left: "2.5%", top: "70%"}} name="menu"
                                                   color="white" size={30}/>
                                         <Image
-                                            style={{width: 50, height: 50, marginTop: "20%"}}
+                                            style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                             source={require('./assets/BobcatLogo.png')}
                                             resizeMode='contain'
                                         />
@@ -154,14 +155,15 @@ export default function Navigation({navigation}) {
                                             backgroundColor: "#424242",
                                             flexDirection: 'row',
                                             flexWrap: 'wrap',
-                                            maxHeight: "75%"
+                                            height: "33%"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                             <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                      style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                      name="menu" color="white" size={30}/>
+                                                      style={{position: "absolute", left: "2.5%", top: "70%"}}
+                                                      name="menu"
+                                                      color="white" size={30}/>
                                             <Image
-                                                style={{width: 50, height: 50, marginTop: "20%"}}
+                                                style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                                 source={require('./assets/BobcatLogo.png')}
                                                 resizeMode='contain'
                                             />
@@ -184,14 +186,15 @@ export default function Navigation({navigation}) {
                                                 backgroundColor: "#424242",
                                                 flexDirection: 'row',
                                                 flexWrap: 'wrap',
-                                                maxHeight: "75%"
+                                                height: "33%"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                          style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                          name="menu" color="white" size={30}/>
+                                                          style={{position: "absolute", left: "2.5%", top: "70%"}}
+                                                          name="menu"
+                                                          color="white" size={30}/>
                                                 <Image
-                                                    style={{width: 50, height: 50, marginTop: "20%"}}
+                                                    style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                                     source={require('./assets/BobcatLogo.png')}
                                                     resizeMode='contain'
                                                 />
@@ -212,14 +215,15 @@ export default function Navigation({navigation}) {
                                                 backgroundColor: "#424242",
                                                 flexDirection: 'row',
                                                 flexWrap: 'wrap',
-                                                maxHeight: "75%"
+                                                height: "33%"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
-                                                          style={{position: "absolute", left: "2.5%", top: "50%"}}
-                                                          name="menu" color="white" size={30}/>
+                                                          style={{position: "absolute", left: "2.5%", top: "70%"}}
+                                                          name="menu"
+                                                          color="white" size={30}/>
                                                 <Image
-                                                    style={{width: 50, height: 50, marginTop: "20%"}}
+                                                    style={{width: 50, height: 50, position: "absolute", top: "60%"}}
                                                     source={require('./assets/BobcatLogo.png')}
                                                     resizeMode='contain'
                                                 />

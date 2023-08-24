@@ -7,7 +7,7 @@ import {API_URL} from '@env';
 
 let API = API_URL
 
-if(!API_URL) {
+if (!API_URL) {
     API = "https://mybobcat.simplexwebsites.com";
 }
 
@@ -54,18 +54,18 @@ export default function Events({navigation}) {
         () => {
             navigation.addListener("focus", _ => {
                 fetch(API + "/events")
-                .then((resp) => resp.json())
-                .then((json) => {
-                    let e = json.events
-                    e.sort((a, b) => {
-                        const dateA = new Date(a.date_time);
-                        const dateB = new Date(b.date_time);
-                        return dateA - dateB;
-                    });
-                    setEvents(e);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setLoading(false));
+                    .then((resp) => resp.json())
+                    .then((json) => {
+                        let e = json.events
+                        e.sort((a, b) => {
+                            const dateA = new Date(a.date_time);
+                            const dateB = new Date(b.date_time);
+                            return dateA - dateB;
+                        });
+                        setEvents(e);
+                    })
+                    .catch((error) => console.error(error))
+                    .finally(() => setLoading(false));
             });
         }, [navigation]);
 
@@ -167,134 +167,132 @@ export default function Events({navigation}) {
     return (
         // if admin, display edit and delete
         // if leader, display edit and delete IF they created the event
-        <View style={{flex: 1}}>
-            <ScrollView contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignContent: "center"}}>
-                {
-                    error ? (
-                        <Box alignItems="center" style={{alignItems: "center", justifyContent: "center"}}>
-                            <Alert w="75%" status={"error"}>
-                                <VStack space={2} flexShrink={1} w="100%">
-                                    <Text style={{textAlign: "center", fontSize: 22}} color="coolGray.800">
-                                        Failed to create an event. Check whether or not you have this
-                                        permission. {"\n"} If
-                                        this issue persists, contact Ben Levy.
-                                    </Text>
-                                    <Button style={{marginVertical: 10, backgroundColor: "#424242"}}
-                                            onPress={() => setError(false)}>Return to Events</Button>
-                                </VStack>
-                            </Alert>
-                        </Box>
-                    ) : (
-                        <VStack space="2.5" mt="4" px="8">
-                            <Heading size="lg" style={{textAlign: "center"}}>Events</Heading>
-                            {/* if leader or admin, button to create an event */}
-                            {(jwt && (jwt.permissions === "admin" || jwt.permissions === "leader")) ? (
-                                <Box alignItems="center">
-                                    <Button onPress={() => {
-                                        // set type to post
-                                        setType("post");
-                                        return setShowModal(true);
-                                    }}>Create an Event</Button>
-                                    <DateTimePickerModal
-                                        isVisible={showDateTime}
-                                        mode="datetime"
-                                        onConfirm={date => {
-                                            setShowDateTime(false);
-                                            setDatetime(date);
-                                        }}
-                                        onCancel={() => setShowDateTime(false)}
-                                    />
-                                    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-                                        <Modal.Content maxWidth="400px">
-                                            <Modal.CloseButton/>
-                                            <Modal.Header>Create/Edit an Event</Modal.Header>
-                                            <Modal.Body>
-                                                <FormControl>
-                                                    <FormControl.Label>Name of the Event</FormControl.Label>
-                                                    <Input onChangeText={name => setName(name)}
-                                                           value={name ? name : ""}/>
-                                                </FormControl>
-                                                <FormControl mt="3">
-                                                    <FormControl.Label>Date and Time of the Event</FormControl.Label>
-                                                    <Button style={{
-                                                        width: "75%",
-                                                        left: "25%",
-                                                        right: "25%",
-                                                        marginVertical: 10
-                                                    }} onPress={() => setShowDateTime(true)}>Select Date and
-                                                        Time</Button>
-                                                    <Input editable={false} isReadOnly={true} selectTextOnFocus={false}
-                                                           isDisabled={true}
-                                                           value={datetime ? datetime.toLocaleString() : ""}/>
-                                                </FormControl>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button.Group space={2}>
-                                                    <Button variant="ghost" colorScheme="blueGray" onPress={() => {
-                                                        setShowModal(false);
+        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+            {
+                error ? (
+                    <Box alignItems="center" style={{alignItems: "center", justifyContent: "center"}}>
+                        <Alert w="75%" status={"error"}>
+                            <VStack space={2} flexShrink={1} w="100%">
+                                <Text style={{textAlign: "center", fontSize: 22}} color="coolGray.800">
+                                    Failed to create an event. Check whether or not you have this
+                                    permission. {"\n"} If
+                                    this issue persists, contact Ben Levy.
+                                </Text>
+                                <Button style={{marginVertical: 10, backgroundColor: "#424242"}}
+                                        onPress={() => setError(false)}>Return to Events</Button>
+                            </VStack>
+                        </Alert>
+                    </Box>
+                ) : (
+                    <VStack space="2.5" mt="4" px="8">
+                        <Heading size="lg" style={{textAlign: "center"}}>Events</Heading>
+                        {/* if leader or admin, button to create an event */}
+                        {(jwt && (jwt.permissions === "admin" || jwt.permissions === "leader")) ? (
+                            <Box alignItems="center">
+                                <Button onPress={() => {
+                                    // set type to post
+                                    setType("post");
+                                    return setShowModal(true);
+                                }}>Create an Event</Button>
+                                <DateTimePickerModal
+                                    isVisible={showDateTime}
+                                    mode="datetime"
+                                    onConfirm={date => {
+                                        setShowDateTime(false);
+                                        setDatetime(date);
+                                    }}
+                                    onCancel={() => setShowDateTime(false)}
+                                />
+                                <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                                    <Modal.Content maxWidth="400px">
+                                        <Modal.CloseButton/>
+                                        <Modal.Header>Create/Edit an Event</Modal.Header>
+                                        <Modal.Body>
+                                            <FormControl>
+                                                <FormControl.Label>Name of the Event</FormControl.Label>
+                                                <Input onChangeText={name => setName(name)}
+                                                       value={name ? name : ""}/>
+                                            </FormControl>
+                                            <FormControl mt="3">
+                                                <FormControl.Label>Date and Time of the Event</FormControl.Label>
+                                                <Button style={{
+                                                    width: "75%",
+                                                    left: "25%",
+                                                    right: "25%",
+                                                    marginVertical: 10
+                                                }} onPress={() => setShowDateTime(true)}>Select Date and
+                                                    Time</Button>
+                                                <Input editable={false} isReadOnly={true} selectTextOnFocus={false}
+                                                       isDisabled={true}
+                                                       value={datetime ? datetime.toLocaleString() : ""}/>
+                                            </FormControl>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button.Group space={2}>
+                                                <Button variant="ghost" colorScheme="blueGray" onPress={() => {
+                                                    setShowModal(false);
+                                                }}>
+                                                    Cancel
+                                                </Button>
+                                                <Button onPress={() => {
+                                                    setShowModal(false);
+                                                    postEvent(name, datetime);
+                                                }}>
+                                                    Save
+                                                </Button>
+                                            </Button.Group>
+                                        </Modal.Footer>
+                                    </Modal.Content>
+                                </Modal>
+                            </Box>
+                        ) : (<></>)
+                        }
+                        <Divider/>
+                        {loading ? (
+                            <Text>Loading events...</Text>
+                        ) : (
+                            events.map((post) => {
+                                return (
+                                    <Stack key={post.id} mb="2.5" mt="1.5" direction="column" space={3}>
+                                        <Box p="2" bg="#E79F2E" _text={{
+                                            fontSize: 'md',
+                                            fontWeight: 'medium',
+                                            color: 'warmGray.50',
+                                            letterSpacing: 'lg'
+                                        }} shadow={2}>
+                                            <Text>{post.name} @ {(new Date(post.date_time)).toLocaleString('en-US')}</Text>
+                                            {
+                                                (jwt && (jwt.permissions === "admin" || post.creator_id === jwt.userId)) ? (
+                                                    <View style={{
+                                                        flexDirection: 'row',
+                                                        flexWrap: 'wrap',
+                                                        marginVertical: 5,
+                                                        justifyContent: "center",
+                                                        alignItems: "center"
                                                     }}>
-                                                        Cancel
-                                                    </Button>
-                                                    <Button onPress={() => {
-                                                        setShowModal(false);
-                                                        postEvent(name, datetime);
-                                                    }}>
-                                                        Save
-                                                    </Button>
-                                                </Button.Group>
-                                            </Modal.Footer>
-                                        </Modal.Content>
-                                    </Modal>
-                                </Box>
-                            ) : (<></>)
-                            }
-                            <Divider/>
-                            {loading ? (
-                                <Text>Loading events...</Text>
-                            ) : (
-                                events.map((post) => {
-                                    return (
-                                        <Stack key={post.id} mb="2.5" mt="1.5" direction="column" space={3}>
-                                            <Box p="2" bg="#E79F2E" _text={{
-                                                fontSize: 'md',
-                                                fontWeight: 'medium',
-                                                color: 'warmGray.50',
-                                                letterSpacing: 'lg'
-                                            }} shadow={2}>
-                                                <Text>{post.name} @ {(new Date(post.date_time)).toLocaleString('en-US')}</Text>
-                                                {
-                                                    (jwt && (jwt.permissions === "admin" || post.creator_id === jwt.userId)) ? (
-                                                        <View style={{
-                                                            flexDirection: 'row',
-                                                            flexWrap: 'wrap',
-                                                            marginVertical: 5,
-                                                            justifyContent: "center",
-                                                            alignItems: "center"
-                                                        }}>
-                                                            <Button w="25%" onPress={() => {
-                                                                setName(post.name);
-                                                                setDatetime(post.date_time);
-                                                                setType("put");
-                                                                setId(post.id);
-                                                                return setShowModal(true);
-                                                            }
-                                                            }>Edit</Button>
-                                                            <Button w="25%" style={{
-                                                                backgroundColor: "#E8003F",
-                                                                marginHorizontal: 5
-                                                            }} onPress={() => deletePost(post.id)}>Delete</Button>
-                                                        </View>
-                                                    ) : (<></>)
-                                                }
-                                            </Box>
-                                        </Stack>
-                                    );
-                                })
-                            )}
-                        </VStack>
-                    )
-                }
-            </ScrollView>
-        </View>
+                                                        <Button w="25%" onPress={() => {
+                                                            setName(post.name);
+                                                            setDatetime(post.date_time);
+                                                            setType("put");
+                                                            setId(post.id);
+                                                            return setShowModal(true);
+                                                        }
+                                                        }>Edit</Button>
+                                                        <Button w="25%" style={{
+                                                            backgroundColor: "#E8003F",
+                                                            marginHorizontal: 5
+                                                        }} onPress={() => deletePost(post.id)}>Delete</Button>
+                                                    </View>
+                                                ) : (<></>)
+                                            }
+                                        </Box>
+                                    </Stack>
+                                );
+                            })
+                        )}
+                    </VStack>
+                )
+            }
+        </ScrollView>
     );
 }

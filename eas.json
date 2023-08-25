@@ -28,6 +28,9 @@
         "appleId": "theappmaker8@gmail.com",
         "ascAppId": "6462968639",
         "appleTeamId": "34S7D3KV54"
+      },
+      "android": {
+        "serviceAccountKeyPath": "./service_key/pc-api-6723566638168305884-716-b85ed507c4a9.json"
       }
     }
   }

@@ -2,17 +2,15 @@ import {useState} from "react";
 import {Box, Button, CheckIcon, Divider, Heading, Modal, Select} from 'native-base';
 
 export default function Grades() {
-    const numberToGrade = {
-        0: "F",
-        1: "D",
-        2: "C",
-        3: "C+",
-        4: "B",
-        5: "B+",
-        6: "A",
-        7: "A+"
-    };
-
+    // grade ranges
+    const f = [0, 0.49],
+        d = [0.5, 1.49],
+        c = [1.5, 2.29],
+        cPlus = [2.3, 2.79],
+        b = [2.8, 3.29],
+        bPlus = [3.3, 3.79],
+        a = [3.8, 4.29],
+        aPlus = [4.3, 4.6];
 
     const [q1, setQ1] = useState();
     const [q2, setQ2] = useState();
@@ -25,17 +23,36 @@ export default function Grades() {
     const [showModal, setShowModal] = useState(false);
 
     const computeGrade = _ => {
-        // if final is not set
-        if (!final) {
-            // average the quarters
-            let average = Math.round((q1 + q2 + q3 + q4) / 4);
-            setOverallGrade(numberToGrade[average]);
-        } else if (final) {
-            // final is 0.1
-            // quarters are 0.225
-            let average = Math.round(0.225*(q1 + q2 + q3 + q4) + 0.1 * parseInt(final));
-            setOverallGrade(numberToGrade[average]);
+
+        // average the quarters (3 significant figures))
+        // final is 0.1
+        // quarters are 0.225
+        // ternary operator - if final, calc, if not, calc without final
+        const average = final ? (0.225*(q1 + q2 + q3 + q4) + 0.1 * parseFloat(final)) : +(((q1 + q2 + q3 + q4) / 4).toFixed(2));
+
+        // check for undefined average
+        if (!average) {
+            setOverallGrade(undefined);
+            return setShowModal(true);
         }
+
+        // find which range the average falls in
+        if (average >= aPlus[0] && average <= aPlus[1]) {
+            setOverallGrade("A+");
+        } else if (average >= a[0] && average <= a[1])
+            setOverallGrade("A");
+        else if (average >= bPlus[0] && average <= bPlus[1])
+            setOverallGrade("B+");
+        else if (average >= b[0] && average <= b[1])
+            setOverallGrade("B");
+        else if (average >= cPlus[0] && average <= cPlus[1])
+            setOverallGrade("C+");
+        else if (average >= c[0] && average <= c[1])
+            setOverallGrade("C");
+        else if (average >= d[0] && average <= d[1])
+            setOverallGrade("D");
+        else if (average >= f[0] && average <= f[1])
+            setOverallGrade("F");
 
         // show modal
         return setShowModal(true);
@@ -75,13 +92,13 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ1(itemValue)}>
-                    <Select.Item label="A+" value={7}/>
-                    <Select.Item label="A" value={6}/>
-                    <Select.Item label="B+" value={5}/>
-                    <Select.Item label="B" value={4}/>
-                    <Select.Item label="C+" value={3}/>
-                    <Select.Item label="C" value={2}/>
-                    <Select.Item label="D" value={1}/>
+                    <Select.Item label="A+" value={4.6}/>
+                    <Select.Item label="A" value={4.0}/>
+                    <Select.Item label="B+" value={3.6}/>
+                    <Select.Item label="B" value={3.0}/>
+                    <Select.Item label="C+" value={2.6}/>
+                    <Select.Item label="C" value={2.0}/>
+                    <Select.Item label="D" value={1.0}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
                 <Select style={{marginVertical: 5}} selectedValue={q2} minWidth="200"
@@ -89,13 +106,13 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ2(itemValue)}>
-                    <Select.Item label="A+" value={7}/>
-                    <Select.Item label="A" value={6}/>
-                    <Select.Item label="B+" value={5}/>
-                    <Select.Item label="B" value={4}/>
-                    <Select.Item label="C+" value={3}/>
-                    <Select.Item label="C" value={2}/>
-                    <Select.Item label="D" value={1}/>
+                    <Select.Item label="A+" value={4.6}/>
+                    <Select.Item label="A" value={4.0}/>
+                    <Select.Item label="B+" value={3.6}/>
+                    <Select.Item label="B" value={3.0}/>
+                    <Select.Item label="C+" value={2.6}/>
+                    <Select.Item label="C" value={2.0}/>
+                    <Select.Item label="D" value={1.0}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
                 <Select style={{marginVertical: 5}} selectedValue={q3} minWidth="200"
@@ -103,13 +120,13 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ3(itemValue)}>
-                    <Select.Item label="A+" value={7}/>
-                    <Select.Item label="A" value={6}/>
-                    <Select.Item label="B+" value={5}/>
-                    <Select.Item label="B" value={4}/>
-                    <Select.Item label="C+" value={3}/>
-                    <Select.Item label="C" value={2}/>
-                    <Select.Item label="D" value={1}/>
+                    <Select.Item label="A+" value={4.6}/>
+                    <Select.Item label="A" value={4.0}/>
+                    <Select.Item label="B+" value={3.6}/>
+                    <Select.Item label="B" value={3.0}/>
+                    <Select.Item label="C+" value={2.6}/>
+                    <Select.Item label="C" value={2.0}/>
+                    <Select.Item label="D" value={1.0}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
                 <Select style={{marginVertical: 5}} selectedValue={q4} minWidth="200"
@@ -117,13 +134,13 @@ export default function Grades() {
                     bg: "teal.600",
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setQ4(itemValue)}>
-                    <Select.Item label="A+" value={7}/>
-                    <Select.Item label="A" value={6}/>
-                    <Select.Item label="B+" value={5}/>
-                    <Select.Item label="B" value={4}/>
-                    <Select.Item label="C+" value={3}/>
-                    <Select.Item label="C" value={2}/>
-                    <Select.Item label="D" value={1}/>
+                    <Select.Item label="A+" value={4.6}/>
+                    <Select.Item label="A" value={4.0}/>
+                    <Select.Item label="B+" value={3.6}/>
+                    <Select.Item label="B" value={3.0}/>
+                    <Select.Item label="C+" value={2.6}/>
+                    <Select.Item label="C" value={2.0}/>
+                    <Select.Item label="D" value={1.0}/>
                     <Select.Item label="F" value={0}/>
                 </Select>
                 <Select style={{marginVertical: 5}} selectedValue={final} minWidth="200"
@@ -132,13 +149,13 @@ export default function Grades() {
                     endIcon: <CheckIcon size="5"/>
                 }} mt={1} onValueChange={itemValue => setFinal(itemValue)}>
                     <Select.Item label="No Final Exam" value={0}/>
-                    <Select.Item label="A+" value={7}/>
-                    <Select.Item label="A" value={6}/>
-                    <Select.Item label="B+" value={5}/>
-                    <Select.Item label="B" value={4}/>
-                    <Select.Item label="C+" value={3}/>
-                    <Select.Item label="C" value={2}/>
-                    <Select.Item label="D" value={1}/>
+                    <Select.Item label="A+" value={4.6}/>
+                    <Select.Item label="A" value={4.0}/>
+                    <Select.Item label="B+" value={3.6}/>
+                    <Select.Item label="B" value={3.0}/>
+                    <Select.Item label="C+" value={2.6}/>
+                    <Select.Item label="C" value={2.0}/>
+                    <Select.Item label="D" value={1.0}/>
                     <Select.Item label="F" value={"0"}/>
                 </Select>
                 <Button style={{marginVertical: 10}} onPress={computeGrade}>Compute Grade</Button>

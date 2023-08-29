@@ -1,23 +1,24 @@
 {
   "cli": {
-    "version": ">= 4.1.2"
+    "version": ">= 4.1.2",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env" : {
+      "env": {
         "API_URL": "https://mybobcat.simplexwebsites.com"
       }
     },
     "preview": {
       "distribution": "internal",
-      "env" : {
+      "env": {
         "API_URL": "https://mybobcat.simplexwebsites.com"
       }
     },
     "production": {
-      "env" : {
+      "env": {
         "API_URL": "https://mybobcat.simplexwebsites.com"
       }
     }

@@ -17,6 +17,7 @@ export default function Grades() {
     const [q3, setQ3] = useState();
     const [q4, setQ4] = useState();
     const [final, setFinal] = useState();
+    const [finalPercentage, setFinalPercentage] = useState();
 
     const [overallGrade, setOverallGrade] = useState();
 
@@ -25,10 +26,13 @@ export default function Grades() {
     const computeGrade = _ => {
 
         // average the quarters (3 significant figures))
-        // final is 0.1
-        // quarters are 0.225
+
+        // find weightings (if final)
+        let quarterWeights;
+        if(final && finalPercentage)
+            quarterWeights = (1-finalPercentage)/4;
         // ternary operator - if final, calc, if not, calc without final
-        const average = final ? (0.225*(q1 + q2 + q3 + q4) + 0.1 * parseFloat(final)) : +(((q1 + q2 + q3 + q4) / 4).toFixed(2));
+        const average = final ? (quarterWeights*(q1 + q2 + q3 + q4) + finalPercentage * parseFloat(final)) : +(((q1 + q2 + q3 + q4) / 4).toFixed(2));
 
         // check for undefined average
         if (!average) {
@@ -158,6 +162,18 @@ export default function Grades() {
                     <Select.Item label="D" value={1.0}/>
                     <Select.Item label="F" value={"0"}/>
                 </Select>
+                {
+                    final ? (
+                        <Select style={{marginVertical: 5}} selectedValue={finalPercentage} minWidth="200"
+                                accessibilityLabel="Final Exam Percentage" placeholder="Final Exam % of Grade" _selectedItem={{
+                            bg: "teal.600",
+                            endIcon: <CheckIcon size="5"/>
+                        }} mt={1} onValueChange={itemValue => setFinalPercentage(itemValue)}>
+                            <Select.Item label="10%" value={0.1}/>
+                            <Select.Item label="20%" value={0.2}/>
+                        </Select>
+                    ) : (<></>)
+                }
                 <Button style={{marginVertical: 10}} onPress={computeGrade}>Compute Grade</Button>
             </Box>
         </Box>

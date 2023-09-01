@@ -48,7 +48,8 @@ export default function Navigation({navigation}) {
                                             <View style={{
                                                 width: "100%",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                marginVertical: 5
                                             }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
@@ -85,7 +86,8 @@ export default function Navigation({navigation}) {
                                             <View style={{
                                                 width: "100%",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                marginVertical: 5
                                             }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
@@ -122,7 +124,8 @@ export default function Navigation({navigation}) {
                                             <View style={{
                                                 width: "100%",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                marginVertical: 5
                                             }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
@@ -159,7 +162,8 @@ export default function Navigation({navigation}) {
                                             <View style={{
                                                 width: "100%",
                                                 alignItems: "center",
-                                                justifyContent: "center"
+                                                justifyContent: "center",
+                                                marginVertical: 5
                                             }}>
                                                 <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                           name="menu"
@@ -198,7 +202,8 @@ export default function Navigation({navigation}) {
                                                     <View style={{
                                                         width: "100%",
                                                         alignItems: "center",
-                                                        justifyContent: "center"
+                                                        justifyContent: "center",
+                                                        marginVertical: 5
                                                     }}>
                                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                                   name="menu"
@@ -238,7 +243,8 @@ export default function Navigation({navigation}) {
                                                     <View style={{
                                                         width: "100%",
                                                         alignItems: "center",
-                                                        justifyContent: "center"
+                                                        justifyContent: "center",
+                                                        marginVertical: 5
                                                     }}>
                                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                                   name="menu"
@@ -281,7 +287,8 @@ export default function Navigation({navigation}) {
                                                     <View style={{
                                                         width: "100%",
                                                         alignItems: "center",
-                                                        justifyContent: "center"
+                                                        justifyContent: "center",
+                                                        marginVertical: 5
                                                     }}>
                                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                                   name="menu"
@@ -321,7 +328,8 @@ export default function Navigation({navigation}) {
                                                     <View style={{
                                                         width: "100%",
                                                         alignItems: "center",
-                                                        justifyContent: "center"
+                                                        justifyContent: "center",
+                                                        marginVertical: 5
                                                     }}>
                                                         <Ionicons onPress={_ => navigation.toggleDrawer()}
                                                                   name="menu"

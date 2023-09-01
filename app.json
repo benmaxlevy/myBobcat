@@ -26,15 +26,15 @@
     "runtimeVersion": {
       "policy": "appVersion"
     },
-    "version": "1.1.0",
+    "version": "1.1.1",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.blaksky.myBobcat"
     },
     "android": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "package": "com.benlevy.myBobcat",
-      "versionCode": 1,
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"

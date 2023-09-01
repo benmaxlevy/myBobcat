@@ -72,7 +72,7 @@ export default function Gpa() {
                                                 return setClasses(tempClasses);
                                             }} style={{color: "#E8003F", position: "absolute", right: 0}}/>
                                         </View>
-                                        <Input placeholder={"Class Name"} minW={200} selectedValue={c.title}
+                                        <Input placeholder={"Class Name"} minW={250} selectedValue={c.title}
                                                onValueChange={itemValue => {
                                                    let tempClasses = [...classes];
                                                    tempClasses[index].title = itemValue;
@@ -80,7 +80,7 @@ export default function Gpa() {
                                                }}
                                         />
                                         <FormControl.Label>Number of Credits</FormControl.Label>
-                                        <Select minW={200}
+                                        <Select minW={250}
                                                 accessibilityLabel="Credits" placeholder="Credits"
                                                 selectedValue={c.credits}
                                                 onValueChange={itemValue => {
@@ -91,11 +91,11 @@ export default function Gpa() {
                                             bg: "teal.600",
                                             endIcon: <CheckIcon size="5"/>
                                         }} mt={1}>
-                                            <Select.Item label="1.0" value={1.0}/>
-                                            <Select.Item label="0.5" value={0.5}/>
+                                            <Select.Item label="1.0 (2 Semesters/Full-Year)" value={1.0}/>
+                                            <Select.Item label="0.5 (1 Semester/Half-Year)" value={0.5}/>
                                         </Select>
                                         <FormControl.Label>Grade</FormControl.Label>
-                                        <Select minW={200}
+                                        <Select minW={250}
                                                 accessibilityLabel="Grade" placeholder="Grade" selectedValue={c.grade}
                                                 onValueChange={itemValue => {
                                                     let tempClasses = [...classes];

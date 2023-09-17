@@ -6,7 +6,7 @@ import {Context} from "../Context";
 
 import {API_URL} from '@env';
 
-let API = API_URL
+let API = API_URL;
 
 if(!API_URL) {
     API = "https://mybobcat.simplexwebsites.com";

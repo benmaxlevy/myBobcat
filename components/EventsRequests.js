@@ -274,7 +274,7 @@ export default function Events({navigation}) {
                                                                         </Button>
                                                                         <Button onPress={() => {
                                                                             setShowModal(false);
-                                                                            putEvent(post.id, post.name, post.date_time, eventType, post.approved);
+                                                                            putEvent(post.id, name, datetime, eventType, post.approved);
                                                                         }}>
                                                                             Save
                                                                         </Button>

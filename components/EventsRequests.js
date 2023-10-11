@@ -136,9 +136,9 @@ export default function Events({navigation}) {
                 setLoading(true);
                 refetchEvents();
                 // clear state
-                setName();
-                setDatetime();
-                setEvents();
+                setName("");
+                setDatetime("");
+                setEventType("");
                 navigation.navigate('Event Requests');
             })
             .catch(err => {

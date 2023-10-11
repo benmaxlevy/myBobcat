@@ -175,9 +175,9 @@ export default function Events({navigation}) {
                     setLoading(true);
                     refetchEvents();
                     // clear state
-                    setName();
-                    setEventType();
-                    setDatetime();
+                    setName("");
+                    setEventType("");
+                    setDatetime("");
                     setId();
                     navigation.navigate('Events');
                 })

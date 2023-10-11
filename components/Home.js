@@ -1,4 +1,4 @@
-import {View, RefreshControl} from "react-native";
+import {View, RefreshControl, Linking} from "react-native";
 import {Alert, Box, Button, Heading, ScrollView, Stack, Text, VStack} from 'native-base';
 import {useContext, useEffect, useState} from "react";
 
@@ -40,7 +40,6 @@ export default function Home({navigation}) {
             .catch((error) => setError(true))
             .finally(() => setRefreshing(false));
     };
-
     const changeDay = (newDay) => {
         fetch(API + "/schedule", {
             method: "POST",
@@ -166,6 +165,15 @@ export default function Home({navigation}) {
                                         someone else you know is struggling,
                                         calling or texting <Text style={{color: "black", fontSize: 20}}
                                                                  bold>988</Text> is here for you.</Text>
+                                </Box>
+                            </Stack>
+                            <Stack mb="2.5" mt="1.5" direction="column">
+                                <Box p="2" bg="#E79F2E"
+                                shadow={2}>
+                                    {/* link to ESchool */}
+                                    <Button onPress={async () => {
+                                        await Linking.openURL("https://esdstudentportal.lhric.org/Login.aspx?ReturnUrl=%2fbyramhills");
+                                    }}>Student Portal</Button>
                                 </Box>
                             </Stack>
                         </VStack>

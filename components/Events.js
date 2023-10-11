@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Text, View, RefreshControl} from "react-native";
+import {Text, View, RefreshControl, Linking} from "react-native";
 import {Box, Divider, Heading, ScrollView, Stack, VStack, Button, Modal, FormControl, Input, Alert} from 'native-base';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -193,6 +193,7 @@ export default function Events({navigation}) {
                 ) : (
                     <VStack space="2.5" mt="4" px="8">
                         <Heading size="lg" style={{textAlign: "center"}}>Events</Heading>
+
                         {/* if leader or admin, button to create an event */}
                         {(jwt && (jwt.permissions === "admin" || jwt.permissions === "leader")) ? (
                             <Box alignItems="center">
@@ -255,6 +256,16 @@ export default function Events({navigation}) {
                         ) : (<></>)
                         }
                         <Divider/>
+                        <Box style={{flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center"}}>
+                            {/* link to athletics */}
+                            <Button style={{marginRight: 5}} onPress={async () => {
+                                await Linking.openURL("https://www.section1ny.org/public/genie/434/school/149/");
+                            }}>Athletics</Button>
+                            {/* link to Club Info */}
+                            <Button onPress={async () => {
+                                await Linking.openURL("https://sites.google.com/byramhills.net/clubs-and-activities-2022-2023/home");
+                            }}>Club Info</Button>
+                        </Box>
                         {
                             events.map((post) => {
                                     return (

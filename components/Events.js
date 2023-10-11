@@ -1,6 +1,19 @@
 import {useEffect, useState} from "react";
 import {Text, View, RefreshControl, Linking} from "react-native";
-import {Box, Divider, Heading, ScrollView, Stack, VStack, Button, Modal, FormControl, Input, Alert} from 'native-base';
+import {
+    Box,
+    Divider,
+    Heading,
+    ScrollView,
+    Stack,
+    VStack,
+    Button,
+    Modal,
+    FormControl,
+    Input,
+    Alert,
+    CheckIcon, Select
+} from 'native-base';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import {API_URL} from '@env';
@@ -28,6 +41,7 @@ export default function Events({navigation}) {
 
     // create form values
     const [name, setName] = useState("");
+    const [eventType, setEventType] = useState("");
     const [datetime, setDatetime] = useState();
 
     // put form values
@@ -99,7 +113,7 @@ export default function Events({navigation}) {
                 setError(true);
             });
     };
-    const postEvent = (name, datetime) => {
+    const postEvent = (name, datetime, eventType) => {
         // type is either "post" or "put"
         if (type === "post") {
             fetch(API + "/events", {
@@ -110,7 +124,8 @@ export default function Events({navigation}) {
                 },
                 body: new URLSearchParams({
                     "name": name,
-                    "date_time": datetime.toString()
+                    "date_time": datetime.toString(),
+                    "type": eventType
                 }).toString(),
             })
                 .then((response) => {
@@ -125,8 +140,10 @@ export default function Events({navigation}) {
                     setLoading(true);
                     refetchEvents();
                     // clear state
-                    setName();
-                    setDatetime();
+                    setName("");
+                    setDatetime("");
+                    setEventType("");
+                    setId();
                     navigation.navigate('Events');
                 })
                 .catch(err => {
@@ -142,7 +159,8 @@ export default function Events({navigation}) {
                 },
                 body: new URLSearchParams({
                     "name": name,
-                    "date_time": datetime.toString()
+                    "date_time": datetime.toString(),
+                    "type": eventType
                 }).toString(),
             })
                 .then((response) => {
@@ -158,6 +176,7 @@ export default function Events({navigation}) {
                     refetchEvents();
                     // clear state
                     setName();
+                    setEventType();
                     setDatetime();
                     setId();
                     navigation.navigate('Events');
@@ -221,6 +240,17 @@ export default function Events({navigation}) {
                                                 <Input onChangeText={name => setName(name)}
                                                        value={name ? name : ""}/>
                                             </FormControl>
+                                            <FormControl>
+                                                <FormControl.Label>Type of the Event</FormControl.Label>
+                                                <Select style={{marginVertical: 5}} selectedValue={eventType ? eventType : ""} minWidth="200"
+                                                        accessibilityLabel="Event Type" placeholder="Type of Event" _selectedItem={{
+                                                    bg: "teal.600",
+                                                    endIcon: <CheckIcon size="5"/>
+                                                }} mt={1} onValueChange={itemValue => setEventType(itemValue)}>
+                                                    <Select.Item label="Schoolwide" value={"schoolwide"}/>
+                                                    <Select.Item label="Club" value={"club"}/>
+                                                </Select>
+                                            </FormControl>
                                             <FormControl mt="3">
                                                 <FormControl.Label>Date and Time of the Event</FormControl.Label>
                                                 <Button style={{
@@ -244,7 +274,7 @@ export default function Events({navigation}) {
                                                 </Button>
                                                 <Button onPress={() => {
                                                     setShowModal(false);
-                                                    postEvent(name, datetime);
+                                                    postEvent(name, datetime, eventType);
                                                 }}>
                                                     Save
                                                 </Button>
@@ -268,6 +298,8 @@ export default function Events({navigation}) {
                         </Box>
                         {
                             events.map((post) => {
+                                // if not approved, don't show it
+                                if(post.approved === 1)
                                     return (
                                         <Stack key={post.id} mb="2.5" mt="1.5" direction="column" space={3}>
                                             <Box p="2" bg="#E79F2E" _text={{
@@ -287,9 +319,10 @@ export default function Events({navigation}) {
                                                             alignItems: "center"
                                                         }}>
                                                             <Button w="25%" onPress={() => {
+                                                                setType("put");
                                                                 setName(post.name);
                                                                 setDatetime(post.date_time);
-                                                                setType("put");
+                                                                setEventType(post.type);
                                                                 setId(post.id);
                                                                 return setShowModal(true);
                                                             }

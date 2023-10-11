@@ -7,6 +7,7 @@ import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 
 // components
 import Events from './components/Events';
+import EventsRequests from './components/EventsRequests';
 import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -109,6 +110,47 @@ export default function Navigation({navigation}) {
                                 }
                             }}
                         />
+                        {/* if leader or admin, show tab for event requests */}
+                        {(jwt !== undefined && jwt.permissions !== "student") ? (<>
+                            <Drawer.Screen
+                                name="Event Requests"
+                                component={EventsRequests}
+                                options={{
+                                    header: ({navigation}) => {
+                                        return (
+                                            <SafeAreaView style={{
+                                                backgroundColor: "#424242",
+                                                flexDirection: "row"
+                                            }}>
+                                                <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+
+                                                <View style={{
+                                                    width: "100%",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    marginVertical: 5
+                                                }}>
+                                                    <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                              name="menu"
+                                                              color="white" size={35}
+                                                              style={{
+                                                                  marginLeft: windowWidth * 0.01,
+                                                                  position: "absolute",
+                                                                  left: 5
+                                                              }}
+                                                    />
+                                                    <Image
+                                                        style={{width: windowHeight * 0.05, height: windowHeight * 0.05}}
+                                                        source={require('./assets/BobcatLogo.png')}
+                                                        resizeMode='contain'
+                                                    />
+                                                </View>
+                                            </SafeAreaView>
+                                        );
+                                    }
+                                }}
+                            />
+                        </>) : (<></>)}
                         <Drawer.Screen
                             name="Grade Calculator"
                             component={Grades}

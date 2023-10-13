@@ -188,6 +188,8 @@ export default function Events({navigation}) {
         }
     };
 
+    const [typeToShow, setTypeToShow] = useState("");
+
     return (
         // if admin, display edit and delete
         // if leader, display edit and delete IF they created the event
@@ -242,11 +244,13 @@ export default function Events({navigation}) {
                                             </FormControl>
                                             <FormControl>
                                                 <FormControl.Label>Type of the Event</FormControl.Label>
-                                                <Select style={{marginVertical: 5}} selectedValue={eventType ? eventType : ""} minWidth="200"
-                                                        accessibilityLabel="Event Type" placeholder="Type of Event" _selectedItem={{
-                                                    bg: "teal.600",
-                                                    endIcon: <CheckIcon size="5"/>
-                                                }} mt={1} onValueChange={itemValue => setEventType(itemValue)}>
+                                                <Select style={{marginVertical: 5}}
+                                                        selectedValue={eventType ? eventType : ""} minWidth="200"
+                                                        accessibilityLabel="Event Type" placeholder="Type of Event"
+                                                        _selectedItem={{
+                                                            bg: "teal.600",
+                                                            endIcon: <CheckIcon size="5"/>
+                                                        }} mt={1} onValueChange={itemValue => setEventType(itemValue)}>
                                                     <Select.Item label="Schoolwide" value={"schoolwide"}/>
                                                     <Select.Item label="Club" value={"club"}/>
                                                 </Select>
@@ -285,8 +289,12 @@ export default function Events({navigation}) {
                             </Box>
                         ) : (<></>)
                         }
-                        <Divider/>
-                        <Box style={{flexDirection: "row", flexWrap: "wrap", alignItems: "center", justifyContent: "center"}}>
+                        <Box style={{
+                            flexDirection: "row",
+                            flexWrap: "wrap",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
                             {/* link to athletics */}
                             <Button style={{marginRight: 5}} onPress={async () => {
                                 await Linking.openURL("https://www.section1ny.org/public/genie/434/school/149/");
@@ -296,47 +304,70 @@ export default function Events({navigation}) {
                                 await Linking.openURL("https://sites.google.com/byramhills.net/clubs-and-activities-2022-2023/home");
                             }}>Club Info</Button>
                         </Box>
+                        <Divider/>
+                        <Box style={{
+                            flexDirection: "row",
+                            flexWrap: "wrap",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            {/* only relevant button */}
+                            {(typeToShow === "") ? (
+                                // default value (show both buttons)
+                                <>
+                                    <Button style={{marginRight: 5}} onPress={_ => setTypeToShow("schoolwide")}>Show
+                                            Schoolwide Events</Button>
+                                    <Button style={{marginRight: 5}} onPress={_ => setTypeToShow("club")}>Show Club
+                                        Events</Button>
+                                </>
+                            ) : (typeToShow === "schoolwide") ? (
+                                <Button style={{marginRight: 5}} onPress={_ => setTypeToShow("club")}>Show Club
+                                    Events</Button>
+                            ) : (<Button style={{marginRight: 5}} onPress={_ => setTypeToShow("schoolwide")}>Show
+                                    Schoolwide Events</Button>
+                            )}
+                        </Box>
                         {
                             events.map((post) => {
-                                // if not approved, don't show it
-                                if(post.approved === 1)
-                                    return (
-                                        <Stack key={post.id} mb="2.5" mt="1.5" direction="column" space={3}>
-                                            <Box p="2" bg="#E79F2E" _text={{
-                                                fontSize: 'md',
-                                                fontWeight: 'medium',
-                                                color: 'warmGray.50',
-                                                letterSpacing: 'lg'
-                                            }} shadow={2}>
-                                                <Text>{post.name} @ {(new Date(post.date_time)).toLocaleString('en-US')}</Text>
-                                                {
-                                                    (jwt && (jwt.permissions === "admin" || post.creator_id === jwt.userId)) ? (
-                                                        <View style={{
-                                                            flexDirection: 'row',
-                                                            flexWrap: 'wrap',
-                                                            marginVertical: 5,
-                                                            justifyContent: "center",
-                                                            alignItems: "center"
-                                                        }}>
-                                                            <Button w="25%" onPress={() => {
-                                                                setType("put");
-                                                                setName(post.name);
-                                                                setDatetime(post.date_time);
-                                                                setEventType(post.type);
-                                                                setId(post.id);
-                                                                return setShowModal(true);
-                                                            }
-                                                            }>Edit</Button>
-                                                            <Button w="25%" style={{
-                                                                backgroundColor: "#E8003F",
-                                                                marginHorizontal: 5
-                                                            }} onPress={() => deletePost(post.id)}>Delete</Button>
-                                                        </View>
-                                                    ) : (<></>)
-                                                }
-                                            </Box>
-                                        </Stack>
-                                    );
+                                    // if not approved, don't show it
+                                    if (post.approved === 1 && post.type === typeToShow)
+                                        return (
+                                            <Stack key={post.id} mb="2.5" mt="1.5" direction="column" space={3}>
+                                                <Box p="2" bg="#E79F2E" _text={{
+                                                    fontSize: 'md',
+                                                    fontWeight: 'medium',
+                                                    color: 'warmGray.50',
+                                                    letterSpacing: 'lg'
+                                                }} shadow={2}>
+                                                    <Text>{post.name} @ {(new Date(post.date_time)).toLocaleString('en-US')}</Text>
+                                                    {
+                                                        (jwt && (jwt.permissions === "admin" || post.creator_id === jwt.userId)) ? (
+                                                            <View style={{
+                                                                flexDirection: 'row',
+                                                                flexWrap: 'wrap',
+                                                                marginVertical: 5,
+                                                                justifyContent: "center",
+                                                                alignItems: "center"
+                                                            }}>
+                                                                <Button w="25%" onPress={() => {
+                                                                    setType("put");
+                                                                    setName(post.name);
+                                                                    setDatetime(post.date_time);
+                                                                    setEventType(post.type);
+                                                                    setId(post.id);
+                                                                    return setShowModal(true);
+                                                                }
+                                                                }>Edit</Button>
+                                                                <Button w="25%" style={{
+                                                                    backgroundColor: "#E8003F",
+                                                                    marginHorizontal: 5
+                                                                }} onPress={() => deletePost(post.id)}>Delete</Button>
+                                                            </View>
+                                                        ) : (<></>)
+                                                    }
+                                                </Box>
+                                            </Stack>
+                                        );
                                 }
                             )}
                     </VStack>

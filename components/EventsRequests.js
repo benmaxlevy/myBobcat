@@ -171,6 +171,15 @@ export default function Events({navigation}) {
                     </Box>
                 ) : (
                     <VStack space="2.5" mt="4" px="8">
+                        <DateTimePickerModal
+                            isVisible={showDateTime}
+                            mode="datetime"
+                            onConfirm={date => {
+                                setShowDateTime(false);
+                                setDatetime(date);
+                            }}
+                            onCancel={() => setShowDateTime(false)}
+                        />
                         <Heading size="lg"
                                  style={{textAlign: "center"}}>{(jwt.permissions === "leader") ? "Your " : ("")}Event
                             Requests</Heading>

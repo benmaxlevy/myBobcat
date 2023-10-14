@@ -14,7 +14,7 @@ export default function App() {
     const { jwt, setJwt } = useContext(Context);
     return (
         <ContextProvider>
-                <Navigation/>
+            <Navigation/>
         </ContextProvider>
     );
 }

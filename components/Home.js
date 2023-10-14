@@ -1,4 +1,4 @@
-import {View, RefreshControl, Linking} from "react-native";
+import {View, RefreshControl, Linking, Image, Dimensions} from "react-native";
 import {Alert, Box, Button, Heading, ScrollView, Stack, Text, VStack} from 'native-base';
 import {useContext, useEffect, useState} from "react";
 
@@ -15,18 +15,36 @@ export default function Home({navigation}) {
     const {jwt, setJwt} = useContext(Context);
     const [refreshing, setRefreshing] = useState(false);
     const [day, setDay] = useState("");
+    const [adverts, setAdverts] = useState([]);
     const [error, setError] = useState(false);
 
     useEffect(
         () => {
             navigation.addListener("focus", _ => {
                 setRefreshing(true);
+
+                // schedule
                 fetch(API + "/schedule")
                     .then((resp) => resp.json())
                     .then((json) => {
                         setDay(json.day);
                     })
                     .catch((error) => setError(true))
+                    .finally(() => setRefreshing(false));
+
+                // adverts
+                fetch(API + "/adverts")
+                    .then((resp) => resp.json())
+                    .then((json) => {
+                        // for each advert, append url to adverts state
+                        let tempAdverts = [];
+                        json.adverts.forEach(a => {
+                            tempAdverts.push({id: a.id, file_path: API +a.file_path});
+                        });
+
+                        setAdverts(tempAdverts);
+                    })
+                    .catch(() => setError(true))
                     .finally(() => setRefreshing(false));
             });
         });
@@ -40,6 +58,23 @@ export default function Home({navigation}) {
             .catch((error) => setError(true))
             .finally(() => setRefreshing(false));
     };
+
+    const refetchAdverts = _ => {
+        fetch(API + "/adverts")
+            .then((resp) => resp.json())
+            .then((json) => {
+                // for each advert, append url to adverts state
+                let tempAdverts = [];
+                json.adverts.forEach(a => {
+                    tempAdverts.push({id: a.id, file_path: API +a.file_path});
+                });
+
+                setAdverts(tempAdverts);
+            })
+            .catch(() => setError(true))
+            .finally(() => setRefreshing(false));
+    };
+
     const changeDay = (newDay) => {
         fetch(API + "/schedule", {
             method: "POST",
@@ -71,7 +106,7 @@ export default function Home({navigation}) {
 
     return (
         <ScrollView refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={refetchDay}/>
+            <RefreshControl refreshing={refreshing} onRefresh={_ => {refetchAdverts(); refetchDay();}}/>
         }>
             {
                 error ? (
@@ -84,12 +119,21 @@ export default function Home({navigation}) {
                                     this issue persists, contact Ben Levy.
                                 </Text>
                                 <Button style={{marginVertical: 10, backgroundColor: "#424242"}}
-                                        onPress={() => setError(false)}>Return to Events</Button>
+                                        onPress={() => setError(false)}>Return to Home</Button>
                             </VStack>
                         </Alert>
                     </Box>
                 ) : (
                     <>
+                        {
+                            adverts.map(ad => {
+                                return (
+                                    <View key={ad.id}>
+                                        <Image key={ad.id} style={{width: Dimensions.get("window").width, height: 90}} source={{uri: ad}}/>
+                                    </View>
+                                )
+                            })
+                        }
                         <Box p="2" bg="#9A1C1F" _text={{
                             fontSize: 'md',
                             fontWeight: 'medium',

@@ -3,6 +3,7 @@ import {Alert, Box, Button, Divider, Heading, ScrollView, Stack, Text, VStack} f
 import {useContext, useEffect, useState} from "react";
 
 import * as DocumentPicker from "expo-document-picker";
+import mime from "mime";
 
 import {API_URL} from '@env';
 import {Context} from "../Context";
@@ -31,12 +32,14 @@ export default function ManageAdverts({navigation}) {
                         // for each advert, append url to adverts state
                         let tempAdverts = [];
                         json.adverts.forEach(a => {
-                            tempAdverts.push({id: ad.id, file_path: API +a.file_path});
+                            tempAdverts.push({id: a.id, file_path: API +a.file_path});
                         });
 
                         setAdverts(tempAdverts);
                     })
-                    .catch(() => setError(true))
+                    .catch((err) => {
+                        setError(true);
+                    })
                     .finally(() => setRefreshing(false));
             });
         });
@@ -54,14 +57,12 @@ export default function ManageAdverts({navigation}) {
                 setAdverts(tempAdverts);
             })
             .catch((err) => {
-                console.log(err)
-                setError(true)
+                setError(true);
             })
             .finally(() => setRefreshing(false));
     };
 
     const deleteAdvert = id => {
-        console.log(id)
         fetch(API + "/adverts/" + id, {
             method: "DELETE",
             headers: {
@@ -114,15 +115,24 @@ export default function ManageAdverts({navigation}) {
                             <Button onPress={async () => {
                                 let result = await DocumentPicker.getDocumentAsync({type: ["image/*"]});
                                 result = result.assets[0];
+
+                                const newImageUri =  "file:///" + result.uri.split("file:/").join("");
+
+                                let b = new FormData();
+
+                                b.append("advert", {
+                                    uri: newImageUri,
+                                    type: mime.getType(newImageUri),
+                                    name: result.name
+                                });
+
                                 fetch(API + "/adverts", {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "multipart/form-data",
                                         "Authorization": jwt.jwt
                                     },
-                                    body: new FormData({
-                                        "advert": result
-                                    }),
+                                    body: b,
                                 })
                                     .then((response) => {
                                         if (response.status !== 200) {
@@ -135,10 +145,9 @@ export default function ManageAdverts({navigation}) {
                                         // bring to events & refetch
                                         setRefreshing(true);
                                         refetchAdverts();
-                                        navigation.navigate('Events');
+                                        navigation.navigate('Manage Adverts');
                                     })
                                     .catch(err => {
-                                        console.log(err)
                                         // set error state to true and display err
                                         setError(true);
                                     });
@@ -146,25 +155,24 @@ export default function ManageAdverts({navigation}) {
                         </Box>
                         <Divider/>
                         {
-                            adverts.map((ad, index) => {
-                                console.log(ad)
+                            adverts.map((ad) => {
                                 return (
-                                    <Stack key={index} mb="2.5" mt="1.5" direction="column" space={3}>
-                                        <Box key={index} bg="#E79F2E" _text={{
+                                    <Stack key={ad.id} mb="2.5" mt="1.5" direction="column" space={3}>
+                                        <Box bg="#E79F2E" _text={{
                                             fontSize: 'md',
                                             fontWeight: 'medium',
                                             color: 'warmGray.50',
                                             letterSpacing: 'lg'
                                         }} shadow={2}>
-                                            <Image key={index} style={{width: Dimensions.get("window").width, height: 90}} source={{uri: ad.file_path}}/>
-                                            <View key={index} style={{
+                                            <Image style={{width: Dimensions.get("window").width, height: 90}} source={{uri: ad.file_path}}/>
+                                            <View style={{
                                                 flexDirection: 'row',
                                                 flexWrap: 'wrap',
                                                 marginVertical: 5,
                                                 justifyContent: "center",
                                                 alignItems: "center"
                                             }}>
-                                                <Button key={index} w="25%" style={{
+                                                <Button w="25%" style={{
                                                     backgroundColor: "#E8003F",
                                                     marginHorizontal: 5
                                                 }} onPress={() => deleteAdvert(ad.id)}>Delete</Button>

@@ -129,7 +129,7 @@ export default function Home({navigation}) {
                             adverts.map(ad => {
                                 return (
                                     <View key={ad.id}>
-                                        <Image key={ad.id} style={{width: Dimensions.get("window").width, height: 90}} source={{uri: ad}}/>
+                                        <Image key={ad.id} style={{width: Dimensions.get("window").width, height: 90}} source={{uri: ad.file_path}}/>
                                     </View>
                                 )
                             })

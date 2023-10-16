@@ -170,7 +170,7 @@ export default function Home({navigation}) {
                         </Box>
                         <VStack space="2.5" mt="4" px="8">
                             <Stack mb="2.5" mt="1.5" direction="column" space={0}>
-                                <Box p="2" bg="#424242" _text={{
+                                <Box p="2" bg="#002855" _text={{
                                     fontSize: 'md',
                                     fontWeight: 'medium',
                                     color: 'warmGray.50',

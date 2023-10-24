@@ -42,7 +42,7 @@ export default function Navigation({navigation}) {
                                 header: ({navigation}) => {
                                     return (
                                         <SafeAreaView style={{
-                                            backgroundColor: "#424242",
+                                            backgroundColor: "#002855",
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -82,7 +82,7 @@ export default function Navigation({navigation}) {
                                     header: ({navigation}) => {
                                         return (
                                             <SafeAreaView style={{
-                                                backgroundColor: "#424242",
+                                                backgroundColor: "#002855",
                                                 flexDirection: "row"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -122,7 +122,7 @@ export default function Navigation({navigation}) {
                                 header: ({navigation}) => {
                                     return (
                                         <SafeAreaView style={{
-                                            backgroundColor: "#424242",
+                                            backgroundColor: "#002855",
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -162,7 +162,7 @@ export default function Navigation({navigation}) {
                                     header: ({navigation}) => {
                                         return (
                                             <SafeAreaView style={{
-                                                backgroundColor: "#424242",
+                                                backgroundColor: "#002855",
                                                 flexDirection: "row"
                                             }}>
                                                 <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -201,7 +201,7 @@ export default function Navigation({navigation}) {
                                 header: ({navigation}) => {
                                     return (
                                         <SafeAreaView style={{
-                                            backgroundColor: "#424242",
+                                            backgroundColor: "#002855",
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -239,7 +239,7 @@ export default function Navigation({navigation}) {
                                 header: ({navigation}) => {
                                     return (
                                         <SafeAreaView style={{
-                                            backgroundColor: "#424242",
+                                            backgroundColor: "#002855",
                                             flexDirection: "row"
                                         }}>
                                             <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -279,7 +279,7 @@ export default function Navigation({navigation}) {
                                         header: ({navigation}) => {
                                             return (
                                                 <SafeAreaView style={{
-                                                    backgroundColor: "#424242",
+                                                    backgroundColor: "#002855",
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -320,7 +320,7 @@ export default function Navigation({navigation}) {
                                         header: ({navigation}) => {
                                             return (
                                                 <SafeAreaView style={{
-                                                    backgroundColor: "#424242",
+                                                    backgroundColor: "#002855",
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -364,7 +364,7 @@ export default function Navigation({navigation}) {
                                         header: ({navigation}) => {
                                             return (
                                                 <SafeAreaView style={{
-                                                    backgroundColor: "#424242",
+                                                    backgroundColor: "#002855",
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
@@ -405,7 +405,7 @@ export default function Navigation({navigation}) {
                                         header: ({navigation}) => {
                                             return (
                                                 <SafeAreaView style={{
-                                                    backgroundColor: "#424242",
+                                                    backgroundColor: "#002855",
                                                     flexDirection: "row"
                                                 }}>
                                                     <StatusBar style={"light"} barStyle={"dark-content"} translucent/>

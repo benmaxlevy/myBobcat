@@ -26,13 +26,13 @@
     "runtimeVersion": {
       "policy": "appVersion"
     },
-    "version": "1.1.1",
+    "version": "1.2.0",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.blaksky.myBobcat"
     },
     "android": {
-      "version": "1.1.1",
+      "version": "1.2.0",
       "package": "com.benlevy.myBobcat",
       "versionCode": 3,
       "adaptiveIcon": {

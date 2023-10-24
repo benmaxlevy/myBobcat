@@ -18,6 +18,42 @@ export default function Home({navigation}) {
     const [adverts, setAdverts] = useState([]);
     const [error, setError] = useState(false);
 
+    const getPeriod = _ => {
+        const schedule = {
+            1: [1, 2, 5, 6, 7],
+            2: [1, 3, 4, 6, 8],
+            3: [2, 3, 4, 5, 7],
+            4: [1, 2, 5, 6, 8],
+            5: [3, 4, 5, 7, 8],
+            6: [1, 2, 3, 6, 7],
+            7: [1, 4, 5, 6, 8],
+            8: [2, 3, 4, 7, 8]
+        }
+
+        // get hh:mm
+        const date = new Date();
+        const time = +(date.getHours() + "." + date.getMinutes());
+
+        // if between 8:10 and 9:14, return 0
+        if(time >= 8.10 && time <= 9.14)
+            return schedule[day][0];
+        // if between 9:18 and 10:22, return 1
+        else if(time >= 9.18 && time <= 10.22)
+            return schedule[day][1];
+        // if between 10:26 and 11:30, return 2
+        else if(time >= 10.26 && time <= 11.30)
+            return schedule[day][2];
+        // if between 12:13 and 1:17, return 3
+        else if(time >= 12.13 && time <= 13.17)
+            return schedule[day][3];
+        // if between 1:21 and 2:25, return 4
+        else if(time >= 13.21 && time <= 14.25)
+            return schedule[day][4];
+        else
+            return -1;
+
+    };
+
     useEffect(
         () => {
             navigation.addListener("focus", _ => {
@@ -106,7 +142,7 @@ export default function Home({navigation}) {
 
     return (
         <ScrollView refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={_ => {refetchAdverts(); refetchDay();}}/>
+            <RefreshControl refreshing={refreshing} onRefresh={_ => {refetchAdverts(); refetchDay(); getPeriod()}}/>
         }>
             {
                 error ? (
@@ -141,7 +177,13 @@ export default function Home({navigation}) {
                             letterSpacing: 'lg'
                         }} shadow={2}>
                             <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>Today is day <Text
-                                bold>{day}</Text>!</Text>
+                                bold>{day}</Text>,
+                                {(getPeriod() === -1) ? (
+                                    <Text bold> no period right now</Text>
+                                ) : (
+                                    <> period <Text bold>{getPeriod()}</Text></>
+                                )}
+                                !</Text>
                             {/* if  admin, button to change schedule */}
                             {(jwt && (jwt.permissions === "admin")) ? (
                                 day==="1" ? (

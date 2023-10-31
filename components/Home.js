@@ -1,5 +1,5 @@
 import {View, RefreshControl, Linking, Image, Dimensions} from "react-native";
-import {Alert, Box, Button, Heading, ScrollView, Stack, Text, VStack} from 'native-base';
+import {Alert, Box, Button, Heading, ScrollView, Stack, Text, VStack, Select} from 'native-base';
 import {useContext, useEffect, useState} from "react";
 
 import {API_URL} from '@env';
@@ -15,6 +15,7 @@ export default function Home({navigation}) {
     const {jwt, setJwt} = useContext(Context);
     const [refreshing, setRefreshing] = useState(false);
     const [day, setDay] = useState("");
+    const [type, setType] = useState("reg");
     const [adverts, setAdverts] = useState([]);
     const [error, setError] = useState(false);
 
@@ -34,24 +35,103 @@ export default function Home({navigation}) {
         const date = new Date();
         const time = +(date.getHours() + "." + date.getMinutes());
 
-        // if between 8:10 and 9:14, return 0
-        if(time >= 8.10 && time <= 9.14)
-            return schedule[day][0];
-        // if between 9:18 and 10:22, return 1
-        else if(time >= 9.18 && time <= 10.22)
-            return schedule[day][1];
-        // if between 10:26 and 11:30, return 2
-        else if(time >= 10.26 && time <= 11.30)
-            return schedule[day][2];
-        // if between 12:13 and 1:17, return 3
-        else if(time >= 12.13 && time <= 13.17)
-            return schedule[day][3];
-        // if between 1:21 and 2:25, return 4
-        else if(time >= 13.21 && time <= 14.25)
-            return schedule[day][4];
+        if(type === "reg") {
+            // if between 8:10 and 9:14, return 0
+            if (time >= 8.10 && time <= 9.14)
+                return schedule[day][0];
+            // if between 9:18 and 10:22, return 1
+            else if (time >= 9.18 && time <= 10.22)
+                return schedule[day][1];
+            // if between 10:26 and 11:30, return 2
+            else if (time >= 10.26 && time <= 11.30)
+                return schedule[day][2];
+            // if between 12:13 and 1:17, return 3
+            else if (time >= 12.13 && time <= 13.17)
+                return schedule[day][3];
+            // if between 1:21 and 2:25, return 4
+            else if (time >= 13.21 && time <= 14.25)
+                return schedule[day][4];
+            else
+                return -1;
+        }
+        else if(type === "one_delay") {
+            // if between 9:00 and 9:55, return 0
+            if (time >= 9.00 && time <= 9.55)
+                return schedule[day][0];
+            // if between 9:59 and 10:54, return 1
+            else if (time >= 9.59 && time <= 10.54)
+                return schedule[day][1];
+            // if between 10:58 and 11:53, return 2
+            else if (time >= 10.58 && time <= 11.53)
+                return schedule[day][2];
+            // if between 12:31 and 1:26, return 3
+            else if (time >= 12.31 && time <= 13.26)
+                return schedule[day][3];
+            // if between 1:30 and 2:25, return 4
+            else if (time >= 13.30 && time <= 14.25)
+                return schedule[day][4];
+            else
+                return -1;
+        }
+        else if(type === "two_delay") {
+            // if between 9:55 and 10:40, return 0
+            if (time >= 9.55 && time <= 10.40)
+                return schedule[day][0];
+            // if between 10:44 and 11:29, return 1
+            else if (time >= 10.44 && time <= 11.29)
+                return schedule[day][1];
+            // if between 11:33 and 12:18, return 2
+            else if (time >= 11.33 && time <= 12.18)
+                return schedule[day][2];
+            // if between 12:51 and 1:36, return 3
+            else if (time >= 12.51 && time <= 13.36)
+                return schedule[day][3];
+            // if between 1:40 and 2:25, return 4
+            else if (time >= 13.40 && time <= 14.25)
+                return schedule[day][4];
+            else
+                return -1;
+        }
+        else if(type === "three_delay") {
+            // if between 10:45 and 11:20, return 0
+            if (time >= 10.45 && time <= 11.20)
+                return schedule[day][0];
+            // if between 11:24 and 11:59, return 1
+            else if (time >= 11.24 && time <= 11.59)
+                return schedule[day][1];
+            // if between 12:03 and 12:38, return 2
+            else if (time >= 12.03 && time <= 12.38)
+                return schedule[day][2];
+            // if between 1:11 and 1:46, return 3
+            else if (time >= 13.11 && time <= 13.46)
+                return schedule[day][3];
+            // if between 1:50 and 2:25, return 4
+            else if (time >= 13.50 && time <= 14.25)
+                return schedule[day][4];
+            else
+                return -1;
+        }
+        else if(type === "three_dismissal") {
+            // if between 8:00 and 8:38, return 0
+            if (time >= 8.00 && time <= 8.38)
+                return schedule[day][0];
+            // if between 8:42 and 9:20, return 1
+            else if (time >= 8.42 && time <= 9.20)
+                return schedule[day][1];
+            // if between 9:24 and 10:02, return 2
+            else if (time >= 9.24 && time <= 10.02)
+                return schedule[day][2];
+            // if between 10:06 and 10:44
+            else if (time >= 10.06 && time <= 10.44)
+                return schedule[day][3];
+            // if between 10:48 and 11:26, return 4
+            else if (time >= 10.48 && time <= 11.26)
+                return schedule[day][4];
+            else
+                return -1;
+        }
         else
             return -1;
-
     };
 
     useEffect(
@@ -63,7 +143,8 @@ export default function Home({navigation}) {
                 fetch(API + "/schedule")
                     .then((resp) => resp.json())
                     .then((json) => {
-                        setDay(json.day);
+                        setDay(json["day"].day);
+                        setType(json["day"].type);
                     })
                     .catch((error) => setError(true))
                     .finally(() => setRefreshing(false));
@@ -89,7 +170,8 @@ export default function Home({navigation}) {
         fetch(API + "/schedule")
             .then((resp) => resp.json())
             .then((json) => {
-                setDay(json.day);
+                setDay(json["day"].day);
+                setType(json["day"].type);
             })
             .catch((error) => setError(true))
             .finally(() => setRefreshing(false));
@@ -111,7 +193,7 @@ export default function Home({navigation}) {
             .finally(() => setRefreshing(false));
     };
 
-    const changeDay = (newDay) => {
+    const changeDay = (newDay = day, newType= type) => {
         fetch(API + "/schedule", {
             method: "POST",
             headers: {
@@ -120,6 +202,7 @@ export default function Home({navigation}) {
             },
             body: new URLSearchParams({
                 "day": newDay,
+                "type": newType
             }).toString(),
         })
             .then((response) => {
@@ -127,7 +210,7 @@ export default function Home({navigation}) {
                     // check permissions
                     throw "Error (check permissions)";
                 } else
-                    return response.json()
+                    return response.json();
             })
             .then(_ => {
                 // bring to events & refetch
@@ -188,24 +271,53 @@ export default function Home({navigation}) {
                             {(jwt && (jwt.permissions === "admin")) ? (
                                 day==="1" ? (
                                     <Box alignItems="center">
-                                        <Button onPress={() => {
+                                        <Button style={{marginBottom: 5}} onPress={() => {
                                             return changeDay(parseInt(day)+1);
                                         }}>Increment</Button>
+                                        <Select style={{color: "white"}} minWidth={200} selectedValue={type} placeholder="Type of Day" accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
+                                            return changeDay(day, itemValue);
+                                        }}>
+                                            <Select.Item label="Regular" value="reg"/>
+                                            <Select.Item label="One Hour Delay" value="one_delay"/>
+                                            <Select.Item label="Two Hour Delay" value="two_delay"/>
+                                            <Select.Item label="Three Hour Delay" value="three_delay"/>
+                                            <Select.Item label="Three Hour Early Dismissal" value="three_dismissal"/>
+                                        </Select>
                                     </Box>
                                 ) : (day==="8" ? (
                                     <Box alignItems="center">
-                                        <Button onPress={() => {
+                                        <Button style={{marginBottom: 5}} onPress={() => {
                                             return changeDay(parseInt(day)-1);
                                         }}>Decrement</Button>
+                                        <Select style={{color: "white"}} minWidth={200} selectedValue={type} placeholder="Type of Day" accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
+                                            return changeDay(day, itemValue);
+                                        }}>
+                                            <Select.Item label="Regular" value="reg"/>
+                                            <Select.Item label="One Hour Delay" value="one_delay"/>
+                                            <Select.Item label="Two Hour Delay" value="two_delay"/>
+                                            <Select.Item label="Three Hour Delay" value="three_delay"/>
+                                            <Select.Item label="Three Hour Early Dismissal" value="three_dismissal"/>
+                                        </Select>
                                     </Box>
                                 ) : (
-                                    <Box style={{flexDirection:'row', flexWrap:'wrap', alignItems: "center", justifyContent: "center", marginVertical: 5}}>
-                                        <Button style={{marginRight: 5}} onPress={() => {
-                                            return changeDay(parseInt(day)+1);
-                                        }}>Increment</Button>
-                                        <Button onPress={() => {
-                                            return changeDay(parseInt(day)-1);
-                                        }}>Decrement</Button>
+                                    <Box>
+                                        <Box style={{flexDirection:'row', flexWrap:'wrap', alignItems: "center", justifyContent: "center", marginVertical: 5}}>
+                                            <Button style={{marginRight: 5}} onPress={() => {
+                                                return changeDay(parseInt(day)-1);
+                                            }}>Decrement</Button>
+                                            <Button onPress={() => {
+                                                return changeDay(parseInt(day)+1);
+                                            }}>Increment</Button>
+                                        </Box>
+                                        <Select style={{color: "white"}} selectedValue={type} placeholder="Type of Day" accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
+                                            return changeDay(day, itemValue);
+                                        }}>
+                                            <Select.Item label="Regular" value="reg"/>
+                                            <Select.Item label="One Hour Delay" value="one_delay"/>
+                                            <Select.Item label="Two Hour Delay" value="two_delay"/>
+                                            <Select.Item label="Three Hour Delay" value="three_delay"/>
+                                            <Select.Item label="Three Hour Early Dismissal" value="three_dismissal"/>
+                                        </Select>
                                     </Box>
                                 ))
                             ) : (<></>)}

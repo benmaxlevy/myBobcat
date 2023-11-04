@@ -35,7 +35,11 @@ export default function Home({navigation}) {
         const date = new Date();
         const time = +(date.getHours() + "." + date.getMinutes());
 
-        if(type === "reg") {
+        // check that day is defined
+        if (day === "")
+            refetchDay();
+
+        if (type === "reg") {
             // if between 8:10 and 9:14, return 0
             if (time >= 8.10 && time <= 9.14)
                 return schedule[day][0];
@@ -53,8 +57,7 @@ export default function Home({navigation}) {
                 return schedule[day][4];
             else
                 return -1;
-        }
-        else if(type === "one_delay") {
+        } else if (type === "one_delay") {
             // if between 9:00 and 9:55, return 0
             if (time >= 9.00 && time <= 9.55)
                 return schedule[day][0];
@@ -72,8 +75,7 @@ export default function Home({navigation}) {
                 return schedule[day][4];
             else
                 return -1;
-        }
-        else if(type === "two_delay") {
+        } else if (type === "two_delay") {
             // if between 9:55 and 10:40, return 0
             if (time >= 9.55 && time <= 10.40)
                 return schedule[day][0];
@@ -91,8 +93,7 @@ export default function Home({navigation}) {
                 return schedule[day][4];
             else
                 return -1;
-        }
-        else if(type === "three_delay") {
+        } else if (type === "three_delay") {
             // if between 10:45 and 11:20, return 0
             if (time >= 10.45 && time <= 11.20)
                 return schedule[day][0];
@@ -110,8 +111,7 @@ export default function Home({navigation}) {
                 return schedule[day][4];
             else
                 return -1;
-        }
-        else if(type === "three_dismissal") {
+        } else if (type === "three_dismissal") {
             // if between 8:00 and 8:38, return 0
             if (time >= 8.00 && time <= 8.38)
                 return schedule[day][0];
@@ -129,8 +129,7 @@ export default function Home({navigation}) {
                 return schedule[day][4];
             else
                 return -1;
-        }
-        else
+        } else
             return -1;
     };
 
@@ -156,7 +155,7 @@ export default function Home({navigation}) {
                         // for each advert, append url to adverts state
                         let tempAdverts = [];
                         json.adverts.forEach(a => {
-                            tempAdverts.push({id: a.id, file_path: API +a.file_path});
+                            tempAdverts.push({id: a.id, file_path: API + a.file_path});
                         });
 
                         setAdverts(tempAdverts);
@@ -184,7 +183,7 @@ export default function Home({navigation}) {
                 // for each advert, append url to adverts state
                 let tempAdverts = [];
                 json.adverts.forEach(a => {
-                    tempAdverts.push({id: a.id, file_path: API +a.file_path});
+                    tempAdverts.push({id: a.id, file_path: API + a.file_path});
                 });
 
                 setAdverts(tempAdverts);
@@ -193,7 +192,7 @@ export default function Home({navigation}) {
             .finally(() => setRefreshing(false));
     };
 
-    const changeDay = (newDay = day, newType= type) => {
+    const changeDay = (newDay = day, newType = type) => {
         fetch(API + "/schedule", {
             method: "POST",
             headers: {
@@ -225,7 +224,11 @@ export default function Home({navigation}) {
 
     return (
         <ScrollView refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={_ => {refetchAdverts(); refetchDay(); getPeriod()}}/>
+            <RefreshControl refreshing={refreshing} onRefresh={_ => {
+                refetchAdverts();
+                refetchDay();
+                getPeriod()
+            }}/>
         }>
             {
                 error ? (
@@ -233,7 +236,7 @@ export default function Home({navigation}) {
                         <Alert w="75%" status={"error"}>
                             <VStack space={2} flexShrink={1} w="100%">
                                 <Text style={{textAlign: "center", fontSize: 22}} color="coolGray.800">
-                                    Failed to create an event. Check whether or not you have this
+                                    Failed to make a request. Check whether or not you have this
                                     permission. {"\n"} If
                                     this issue persists, contact Ben Levy.
                                 </Text>
@@ -248,7 +251,8 @@ export default function Home({navigation}) {
                             adverts.map(ad => {
                                 return (
                                     <View key={ad.id}>
-                                        <Image key={ad.id} style={{width: Dimensions.get("window").width, height: 90}} source={{uri: ad.file_path}}/>
+                                        <Image key={ad.id} style={{width: Dimensions.get("window").width, height: 90}}
+                                               source={{uri: ad.file_path}}/>
                                     </View>
                                 )
                             })
@@ -259,24 +263,41 @@ export default function Home({navigation}) {
                             color: 'warmGray.50',
                             letterSpacing: 'lg'
                         }} shadow={2}>
-                            <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>Today is day <Text
-                                bold>{day}</Text>,
-                                {(getPeriod() === -1) ? (
-                                    <Text bold> no period right now</Text>
+                            {/* if it's a weekend day, no school! */}
+                            {((new Date()).getDay() === 0 || (new Date()).getDay() === 6) ? (
+                                <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>No school
+                                    today!</Text>
+                            ) : (
+                                (day === "") ? (
+                                    <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>Loading
+                                        scheduling...</Text>
                                 ) : (
-                                    <> period <Text bold>{getPeriod()}</Text></>
-                                )}
-                                !</Text>
+                                    <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>
+                                        Today is day <Text bold>{day}</Text>,
+                                        {(getPeriod() === -1) ? (
+                                            <Text bold> no period right now</Text>
+                                        ) : (
+                                            <> period <Text bold>{getPeriod()}</Text></>
+                                        )}
+                                        !</Text>
+                                )
+                            )
+                            }
+                            {/* make sure day is defined */}
+
+
                             {/* if  admin, button to change schedule */}
                             {(jwt && (jwt.permissions === "admin")) ? (
-                                day==="1" ? (
+                                day === "1" ? (
                                     <Box alignItems="center">
                                         <Button style={{marginBottom: 5}} onPress={() => {
-                                            return changeDay(parseInt(day)+1);
+                                            return changeDay(parseInt(day) + 1);
                                         }}>Increment</Button>
-                                        <Select style={{color: "white"}} minWidth={200} selectedValue={type} placeholder="Type of Day" accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
-                                            return changeDay(day, itemValue);
-                                        }}>
+                                        <Select style={{color: "white"}} minWidth={200} selectedValue={type}
+                                                placeholder="Type of Day" accessibilityLabel={"Type of Day"}
+                                                onValueChange={itemValue => {
+                                                    return changeDay(day, itemValue);
+                                                }}>
                                             <Select.Item label="Regular" value="reg"/>
                                             <Select.Item label="One Hour Delay" value="one_delay"/>
                                             <Select.Item label="Two Hour Delay" value="two_delay"/>
@@ -284,14 +305,16 @@ export default function Home({navigation}) {
                                             <Select.Item label="Three Hour Early Dismissal" value="three_dismissal"/>
                                         </Select>
                                     </Box>
-                                ) : (day==="8" ? (
+                                ) : (day === "8" ? (
                                     <Box alignItems="center">
                                         <Button style={{marginBottom: 5}} onPress={() => {
-                                            return changeDay(parseInt(day)-1);
+                                            return changeDay(parseInt(day) - 1);
                                         }}>Decrement</Button>
-                                        <Select style={{color: "white"}} minWidth={200} selectedValue={type} placeholder="Type of Day" accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
-                                            return changeDay(day, itemValue);
-                                        }}>
+                                        <Select style={{color: "white"}} minWidth={200} selectedValue={type}
+                                                placeholder="Type of Day" accessibilityLabel={"Type of Day"}
+                                                onValueChange={itemValue => {
+                                                    return changeDay(day, itemValue);
+                                                }}>
                                             <Select.Item label="Regular" value="reg"/>
                                             <Select.Item label="One Hour Delay" value="one_delay"/>
                                             <Select.Item label="Two Hour Delay" value="two_delay"/>
@@ -301,15 +324,22 @@ export default function Home({navigation}) {
                                     </Box>
                                 ) : (
                                     <Box>
-                                        <Box style={{flexDirection:'row', flexWrap:'wrap', alignItems: "center", justifyContent: "center", marginVertical: 5}}>
+                                        <Box style={{
+                                            flexDirection: 'row',
+                                            flexWrap: 'wrap',
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            marginVertical: 5
+                                        }}>
                                             <Button style={{marginRight: 5}} onPress={() => {
-                                                return changeDay(parseInt(day)-1);
+                                                return changeDay(parseInt(day) - 1);
                                             }}>Decrement</Button>
                                             <Button onPress={() => {
-                                                return changeDay(parseInt(day)+1);
+                                                return changeDay(parseInt(day) + 1);
                                             }}>Increment</Button>
                                         </Box>
-                                        <Select style={{color: "white"}} selectedValue={type} placeholder="Type of Day" accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
+                                        <Select style={{color: "white"}} selectedValue={type} placeholder="Type of Day"
+                                                accessibilityLabel={"Type of Day"} onValueChange={itemValue => {
                                             return changeDay(day, itemValue);
                                         }}>
                                             <Select.Item label="Regular" value="reg"/>
@@ -367,7 +397,7 @@ export default function Home({navigation}) {
                             </Stack>
                             <Stack mb="2.5" mt="1.5" direction="column">
                                 <Box p="2" bg="#E79F2E"
-                                shadow={2}>
+                                     shadow={2}>
                                     {/* link to ESchool */}
                                     <Button onPress={async () => {
                                         await Linking.openURL("https://esdstudentportal.lhric.org/Login.aspx?ReturnUrl=%2fbyramhills");

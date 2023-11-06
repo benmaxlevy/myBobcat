@@ -64,7 +64,7 @@ export default function Events({navigation}) {
                 });
                 setEvents(e);
             })
-            .catch((error) => console.error(error))
+            .catch((error) => setError(true))
             .finally(() => setRefreshing(false));
     };
 

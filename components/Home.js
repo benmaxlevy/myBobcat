@@ -33,7 +33,13 @@ export default function Home({navigation}) {
 
         // get hh:mm
         const date = new Date();
-        const time = +(date.getHours() + "." + date.getMinutes());
+        const time;
+
+        // if minutes is single-digit, reflect that
+        if(date.getMinutes() < 10)
+            time = +(date.getHours() + "." + 0 + date.getMinutes());
+        else
+            time = +(date.getHours() + "." + date.getMinutes());
 
         // check that day is defined
         if (day === "")

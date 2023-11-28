@@ -33,7 +33,7 @@ export default function Home({navigation}) {
 
         // get hh:mm
         const date = new Date();
-        const time;
+        let time;
 
         // if minutes is single-digit, reflect that
         if(date.getMinutes() < 10)

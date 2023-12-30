@@ -47,92 +47,316 @@ export default function Home({navigation}) {
 
         if (type === "reg") {
             // if between 8:10 and 9:14, return 0
-            if (time >= 8.10 && time <= 9.14)
-                return schedule[day][0];
+            if (time >= 8.10 && time <= 9.14) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(9);
+                periodEnd.setMinutes(14);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+                return [schedule[day][0], diff];
+            }
             // if between 9:18 and 10:22, return 1
-            else if (time >= 9.18 && time <= 10.22)
-                return schedule[day][1];
+            else if (time >= 9.18 && time <= 10.22) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(10);
+                periodEnd.setMinutes(22);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][1], diff];
+            }
             // if between 10:26 and 11:30, return 2
-            else if (time >= 10.26 && time <= 11.30)
-                return schedule[day][2];
+            else if (time >= 10.26 && time <= 11.30) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(11);
+                periodEnd.setMinutes(30);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][2], diff];
+            }
             // if between 12:13 and 1:17, return 3
-            else if (time >= 12.13 && time <= 13.17)
-                return schedule[day][3];
+            else if (time >= 12.13 && time <= 13.17) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(13);
+                periodEnd.setMinutes(17);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][3], diff];
+            }
             // if between 1:21 and 2:25, return 4
-            else if (time >= 13.21 && time <= 14.25)
-                return schedule[day][4];
+            else if (time >= 13.21 && time <= 14.25) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(14);
+                periodEnd.setMinutes(25);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][4], diff];
+            }
             else
                 return -1;
         } else if (type === "one_delay") {
             // if between 9:00 and 9:55, return 0
-            if (time >= 9.00 && time <= 9.55)
-                return schedule[day][0];
+            if (time >= 9.00 && time <= 9.55) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(9);
+                periodEnd.setMinutes(55);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][0], diff];
+            }
             // if between 9:59 and 10:54, return 1
-            else if (time >= 9.59 && time <= 10.54)
-                return schedule[day][1];
+            else if (time >= 9.59 && time <= 10.54) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(10);
+                periodEnd.setMinutes(54);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][1], diff];
+            }
             // if between 10:58 and 11:53, return 2
-            else if (time >= 10.58 && time <= 11.53)
-                return schedule[day][2];
+            else if (time >= 10.58 && time <= 11.53) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(11);
+                periodEnd.setMinutes(53);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][2], diff];
+            }
             // if between 12:31 and 1:26, return 3
-            else if (time >= 12.31 && time <= 13.26)
-                return schedule[day][3];
+            else if (time >= 12.31 && time <= 13.26) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(13);
+                periodEnd.setMinutes(26);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][3], diff];
+            }
             // if between 1:30 and 2:25, return 4
-            else if (time >= 13.30 && time <= 14.25)
-                return schedule[day][4];
+            else if (time >= 13.30 && time <= 14.25) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(14);
+                periodEnd.setMinutes(25);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][4], diff];
+            }
             else
                 return -1;
         } else if (type === "two_delay") {
             // if between 9:55 and 10:40, return 0
-            if (time >= 9.55 && time <= 10.40)
-                return schedule[day][0];
+            if (time >= 9.55 && time <= 10.40) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(10);
+                periodEnd.setMinutes(40);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][0], diff];
+            }
             // if between 10:44 and 11:29, return 1
-            else if (time >= 10.44 && time <= 11.29)
-                return schedule[day][1];
+            else if (time >= 10.44 && time <= 11.29) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(11);
+                periodEnd.setMinutes(29);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][1], diff];
+            }
             // if between 11:33 and 12:18, return 2
-            else if (time >= 11.33 && time <= 12.18)
-                return schedule[day][2];
+            else if (time >= 11.33 && time <= 12.18) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(12);
+                periodEnd.setMinutes(18);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][2], diff];
+            }
             // if between 12:51 and 1:36, return 3
-            else if (time >= 12.51 && time <= 13.36)
-                return schedule[day][3];
+            else if (time >= 12.51 && time <= 13.36) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(13);
+                periodEnd.setMinutes(36);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][3], diff];
+            }
             // if between 1:40 and 2:25, return 4
-            else if (time >= 13.40 && time <= 14.25)
-                return schedule[day][4];
+            else if (time >= 13.40 && time <= 14.25) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(14);
+                periodEnd.setMinutes(25);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][4], diff];
+            }
             else
                 return -1;
         } else if (type === "three_delay") {
             // if between 10:45 and 11:20, return 0
-            if (time >= 10.45 && time <= 11.20)
-                return schedule[day][0];
+            if (time >= 10.45 && time <= 11.20) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(11);
+                periodEnd.setMinutes(20);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][0], diff];
+            }
             // if between 11:24 and 11:59, return 1
-            else if (time >= 11.24 && time <= 11.59)
-                return schedule[day][1];
+            else if (time >= 11.24 && time <= 11.59) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(11);
+                periodEnd.setMinutes(59);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][1], diff];
+            }
             // if between 12:03 and 12:38, return 2
-            else if (time >= 12.03 && time <= 12.38)
-                return schedule[day][2];
+            else if (time >= 12.03 && time <= 12.38) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(12);
+                periodEnd.setMinutes(38);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][2], diff];
+            }
             // if between 1:11 and 1:46, return 3
-            else if (time >= 13.11 && time <= 13.46)
-                return schedule[day][3];
+            else if (time >= 13.11 && time <= 13.46) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(13);
+                periodEnd.setMinutes(46);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][3], diff];
+            }
             // if between 1:50 and 2:25, return 4
-            else if (time >= 13.50 && time <= 14.25)
-                return schedule[day][4];
+            else if (time >= 13.50 && time <= 14.25) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(14);
+                periodEnd.setMinutes(25);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][4], diff];
+            }
             else
                 return -1;
         } else if (type === "three_dismissal") {
             // if between 8:00 and 8:38, return 0
-            if (time >= 8.00 && time <= 8.38)
-                return schedule[day][0];
+            if (time >= 8.00 && time <= 8.38) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(8);
+                periodEnd.setMinutes(38);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][0], diff];
+            }
             // if between 8:42 and 9:20, return 1
-            else if (time >= 8.42 && time <= 9.20)
-                return schedule[day][1];
+            else if (time >= 8.42 && time <= 9.20) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(9);
+                periodEnd.setMinutes(20);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][1], diff];
+            }
             // if between 9:24 and 10:02, return 2
-            else if (time >= 9.24 && time <= 10.02)
-                return schedule[day][2];
+            else if (time >= 9.24 && time <= 10.02) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(10);
+                periodEnd.setMinutes(2);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][2], diff];
+            }
             // if between 10:06 and 10:44
-            else if (time >= 10.06 && time <= 10.44)
-                return schedule[day][3];
+            else if (time >= 10.06 && time <= 10.44) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(10);
+                periodEnd.setMinutes(44);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][3], diff];
+            }
             // if between 10:48 and 11:26, return 4
-            else if (time >= 10.48 && time <= 11.26)
-                return schedule[day][4];
+            else if (time >= 10.48 && time <= 11.26) {
+                // get end Date obj
+                const periodEnd = new Date();
+                periodEnd.setHours(11);
+                periodEnd.setMinutes(26);
+
+                // get difference in minutes between end and current
+                const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                return [schedule[day][4], diff];
+            }
             else
                 return -1;
         } else
@@ -283,7 +507,7 @@ export default function Home({navigation}) {
                                         {(getPeriod() === -1) ? (
                                             <Text bold> no period right now</Text>
                                         ) : (
-                                            <> period <Text bold>{getPeriod()}</Text></>
+                                            <> period <Text bold>{getPeriod()[0]}</Text> with <Text bold>{getPeriod()[1]} minutes left</Text></>
                                         )}
                                         !</Text>
                                 )

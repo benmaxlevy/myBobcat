@@ -15,188 +15,187 @@ export default function IndividualSchedule({navigation}) {
     const [refreshing, setRefreshing] = useState(false);
 
     // default state for schedule
-    const defaulScheduleState = {
-        Day_1: {
-            Period_1: {
+    const defaultScheduleState = [
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_2: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_3: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_4: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_5: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_6: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_7: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        },
-        Day_8: {
-            Period_1: {
+        ],
+        [
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_2: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_3: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_4: {
+            {
                 class_name: "",
                 request_type: "POST"
             },
-            Period_5: {
+            {
                 class_name: "",
                 request_type: "POST"
             }
-        }
-    };
-
+        ]
+    ];
 
     // form input - store as an obj
-    const [schedule, setSchedule] = useState(defaulScheduleState);
+    const [schedule, setSchedule] = useState(defaultScheduleState);
     const [error, setError] = useState(false);
 
     const {jwt, setJwt} = useContext(Context);
@@ -204,52 +203,29 @@ export default function IndividualSchedule({navigation}) {
     const DayComponents = () => {
         // create all the day components
         let day_components = [];
+        let key = 0;
 
-        for(let day in schedule) {
+        schedule.forEach((day, day_num) => {
             let day_component = [];
-            for(let period in schedule[day]) {
+            day.forEach((period, period_num) => {
                 day_component.push(
-                    <Stack style={{width: "75%"}} key={day + period} direction={"column"} space={3}>
+                    <Stack style={{width: "75%"}} key={key} direction={"column"} space={3}>
                         <Box p="2" bg="#E79F2E" _text={{
                             fontSize: 'md',
                             fontWeight: 'medium',
                             color: 'warmGray.50',
                             letterSpacing: 'lg'
                         }} shadow={2}>
-                            <Text style={{fontSize: 16, fontWeight: "bold", color: "white"}}>{period.replace("_", " ")}</Text>
+                            <Text style={{fontSize: 16, fontWeight: "bold", color: "white"}}>Period {period_num + 1}</Text>
                             <Divider style={{backgroundColor: "black", marginVertical: 5}}/>
-                            <Input onChangeText={newSchedule => {
+                            <Input defaultValue={period.class_name} onChangeText={newSchedule => {
                                 // determine POST/PUT/DELETE
                                 let reqType = "POST";
 
-                                if(newSchedule === "")
-                                    reqType = "DELETE";
-                                else if(schedule[day][period].class_name !== "")
-                                    reqType = "PUT";
-
-                                console.log(
-                                    {
-                                        ...schedule,
-                                        [day]: {
-                                            ...schedule[day],
-                                            [period]: {
-                                                post_type: reqType,
-                                                class_name: newSchedule
-                                            }
-                                        }
-                                    }
-                                );
-
-                                setSchedule({
-                                    ...schedule,
-                                    [day]: {
-                                        ...schedule[day],
-                                        [period]: {
-                                            post_type: reqType,
-                                            class_name: newSchedule
-                                        }
-                                    }
-                                });
+                                let newScheduleObj = schedule;
+                                newScheduleObj[day_num][period_num].request_type = reqType;
+                                newScheduleObj[day_num][period_num].class_name = newSchedule;
+                                setSchedule(newScheduleObj);
                             }} isRequired={true} w="100%"
                                    shadow={2}
                                    _light={{
@@ -272,15 +248,17 @@ export default function IndividualSchedule({navigation}) {
                         </Box>
                     </Stack>
                 );
-            }
+                key++;
+            });
+
             day_components.push(
                 <Box style={{ marginVertical: 5, justifyContent: "center", flex: 1, alignItems: "center", width: "100%" }}>
-                    <Text style={{fontSize: 20, fontWeight: "bold", color: "black", marginVertical: 5}}>{day.replace("_", " ")}</Text>
+                    <Text style={{fontSize: 20, fontWeight: "bold", color: "black", marginVertical: 5}}>Day {day_num + 1}</Text>
                     <Divider style={{marginVertical: 5, width: "75%"}}/>
                     {day_component}
                 </Box>
             );
-        }
+        });
 
         return day_components;
     };
@@ -304,23 +282,16 @@ export default function IndividualSchedule({navigation}) {
             .then((responseData) => {
                 // if no schedules, set schedule to default
                 if(responseData.schedules.length === 0)
-                    setSchedule(defaulScheduleState);
+                    setSchedule(defaultScheduleState);
                 else {
                     // set schedule - responseData.schedules
-                    let newSchedule = {};
+                    let newSchedule = schedule;
                     responseData.schedules.forEach(period => {
-                        newSchedule = {
-                            ...newSchedule,
-                            ["Day_" + period.day_number]: {
-                                ...newSchedule["Day_" + period.day_number],
-                                ["Period_" + period.period]: {
-                                    class_name: period.class_name,
-                                    request_type: "POST"
-                                }
-                            }
-                        };
+                        newSchedule[period.day_number-1][period.period-1].class_name = period.class_name;
+                        newSchedule[period.day_number-1][period.period-1].request_type = "PUT";
                     });
                     setSchedule(newSchedule);
+                    console.log(newSchedule);
                 }
 
                 setRefreshing(false);
@@ -333,21 +304,21 @@ export default function IndividualSchedule({navigation}) {
     };
 
     const handleSubmit = () => {
-        for(let day in schedule) {
-            for(let period in schedule[day]) {
+        schedule.forEach((day, day_num) => {
+            day.forEach((period, period_num) => {
                 // check request type in schedule[day][period]
-                if(schedule[day][period].request_type === "POST") {
+                if(period.request_type === "POST") {
                     // POST
                     fetch(API + "/individual_schedule", {
-                        method: schedule[day][period].request_type,
+                        method: "POST",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded",
                             "Authorization": jwt.jwt
                         },
                         body: new URLSearchParams({
-                            "day_number": day.split("_")[1],
-                            "period": period.split("_")[1],
-                            "class_name": schedule[day][period].class_name
+                            "day_number": day_num + 1,
+                            "period": period_num +1,
+                            "class_name": period.class_name
                         }).toString(),
                     })
                         .then((response) => {
@@ -364,15 +335,16 @@ export default function IndividualSchedule({navigation}) {
                             // set error state to true and display err
                             setError(true);
                         });
-                } else if(schedule[day][period].request_type === "PUT") {
+                } else if(period.request_type === "PUT") {
                     // PUT
-                    fetch(API + "/individual_schedule/day/" + day.split("_")[1] + "/period/" + period.split("_")[1], {
-                        method: schedule[day][period].request_type,
+                    fetch(API + "/individual_schedule/day/" + (day_num + 1) + "/period/" + (period_num + 1), {
+                        method: "PUT",
                         headers: {
-                            "Authorization": jwt.jwt
+                            "Authorization": jwt.jwt,
+                            "Content-Type": "application/x-www-form-urlencoded"
                         },
                         body: new URLSearchParams({
-                            "class_name": schedule[day][period].class_name
+                            "class_name": period.class_name
                         }).toString()
                     })
                         .then((response) => {
@@ -392,8 +364,8 @@ export default function IndividualSchedule({navigation}) {
 
                 } else if(schedule[day][period].request_type === "DELETE") {
                     // DELETE
-                    fetch(API + "/individual_schedule/day/" + day.split("_")[1] + "/period/" + period.split("_")[1], {
-                        method: schedule[day][period].request_type,
+                    fetch(API + "/individual_schedule/day/" + (day_num + 1) + "/period/" + (period_num + 1), {
+                        method: "DELETE",
                         headers: {
                             "Authorization": jwt.jwt
                         }
@@ -413,8 +385,8 @@ export default function IndividualSchedule({navigation}) {
                             setError(true);
                         });
                 }
-            }
-        }
+            });
+        });
     };
 
     // useEffect on focus to refetch schedule

@@ -313,7 +313,7 @@ export default function Navigation({navigation}) {
                         {(jwt !== undefined) ? (
                             <>
                                 <Drawer.Screen
-                                    name="Schedule"
+                                    name="Manage Schedule"
                                     component={IndividualSchedule}
                                     options={{
                                         header: ({navigation}) => {

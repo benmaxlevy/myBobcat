@@ -28,6 +28,7 @@ export default function Register({navigation}) {
         // check email's format first
         if (!validateEmail(email))
             return setError(true);
+
         fetch(API + "/register", {
             method: "POST",
             headers: {

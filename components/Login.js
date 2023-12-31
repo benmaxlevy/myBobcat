@@ -47,7 +47,6 @@ export default function Login({navigation}) {
                 navigation.navigate('Events');
             })
             .catch(err => {
-                console.log(err);
                 // set error state to true and display err
                 setError(true);
             });

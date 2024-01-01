@@ -244,7 +244,6 @@ export default function IndividualSchedule({navigation}) {
                         </Box>
                     </Stack>
                 );
-                key++;
             });
 
             day_components.push(
@@ -254,6 +253,9 @@ export default function IndividualSchedule({navigation}) {
                     {day_component}
                 </Box>
             );
+
+            // increment key to avoid non-unique keys for above
+            key++;
         });
 
         return day_components;

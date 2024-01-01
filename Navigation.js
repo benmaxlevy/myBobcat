@@ -16,6 +16,7 @@ import Register from './components/Register';
 import Grades from './components/Grades';
 import Gpa from './components/Gpa';
 import Users from "./components/Users";
+import MHResources from "./components/MHResources";
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -40,6 +41,44 @@ export default function Navigation({navigation}) {
                         <Drawer.Screen
                             name="Home"
                             component={Home}
+                            options={{
+                                header: ({navigation}) => {
+                                    return (
+                                        <SafeAreaView style={{
+                                            backgroundColor: "#002855",
+                                            flexDirection: "row"
+                                        }}>
+                                            <StatusBar style={"light"} barStyle={"dark-content"} translucent/>
+
+                                            <View style={{
+                                                width: "100%",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                marginVertical: 5
+                                            }}>
+                                                <Ionicons onPress={_ => navigation.toggleDrawer()}
+                                                          name="menu"
+                                                          color="white" size={35}
+                                                          style={{
+                                                              marginLeft: windowWidth * 0.01,
+                                                              position: "absolute",
+                                                              left: 5
+                                                          }}
+                                                />
+                                                <Image
+                                                    style={{width: windowHeight * 0.05, height: windowHeight * 0.05}}
+                                                    source={require('./assets/BobcatLogo.png')}
+                                                    resizeMode='contain'
+                                                />
+                                            </View>
+                                        </SafeAreaView>
+                                    );
+                                }
+                            }}
+                        />
+                        <Drawer.Screen
+                            name="Mental Health Resources"
+                            component={MHResources}
                             options={{
                                 header: ({navigation}) => {
                                     return (

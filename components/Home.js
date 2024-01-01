@@ -664,6 +664,7 @@ export default function Home({navigation}) {
                                         someone else you know is struggling,
                                         calling or texting <Text style={{color: "black", fontSize: 20}}
                                                                  bold>988</Text> is here for you.</Text>
+                                    <Button style={{marginTop: 5}} onPress={() => {navigation.navigate("Mental Health Resources")}}>More Resources</Button>
                                 </Box>
                             </Stack>
                             <Stack mb="2.5" mt="1.5" direction="column">

@@ -219,11 +219,7 @@ export default function IndividualSchedule({navigation}) {
                             <Text style={{fontSize: 16, fontWeight: "bold", color: "white"}}>Period {period_num + 1}</Text>
                             <Divider style={{backgroundColor: "black", marginVertical: 5}}/>
                             <Input defaultValue={period.class_name} onChangeText={newSchedule => {
-                                // determine POST/PUT/DELETE
-                                let reqType = "POST";
-
                                 let newScheduleObj = schedule;
-                                newScheduleObj[day_num][period_num].request_type = reqType;
                                 newScheduleObj[day_num][period_num].class_name = newSchedule;
                                 setSchedule(newScheduleObj);
                             }} isRequired={true} w="100%"
@@ -308,6 +304,7 @@ export default function IndividualSchedule({navigation}) {
             day.forEach((period, period_num) => {
                 // check request type in schedule[day][period]
                 if(period.request_type === "POST") {
+                    console.log("bruh?")
                     // POST
                     fetch(API + "/individual_schedule", {
                         method: "POST",
@@ -336,6 +333,7 @@ export default function IndividualSchedule({navigation}) {
                             setError(true);
                         });
                 } else if(period.request_type === "PUT") {
+                    console.log("not bruh :)")
                     // PUT
                     fetch(API + "/individual_schedule/day/" + (day_num + 1) + "/period/" + (period_num + 1), {
                         method: "PUT",

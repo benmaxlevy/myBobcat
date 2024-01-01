@@ -203,13 +203,12 @@ export default function IndividualSchedule({navigation}) {
     const DayComponents = () => {
         // create all the day components
         let day_components = [];
-        let key = 0;
 
         schedule.forEach((day, day_num) => {
             let day_component = [];
             day.forEach((period, period_num) => {
                 day_component.push(
-                    <Stack style={{width: "75%"}} key={key} direction={"column"} space={3}>
+                    <Stack style={{width: "75%"}} key={day.id} direction={"column"} space={3}>
                         <Box p="2" bg="#E79F2E" _text={{
                             fontSize: 'md',
                             fontWeight: 'medium',
@@ -253,9 +252,6 @@ export default function IndividualSchedule({navigation}) {
                     {day_component}
                 </Box>
             );
-
-            // increment key to avoid non-unique keys for above
-            key++;
         });
 
         return day_components;
@@ -286,10 +282,10 @@ export default function IndividualSchedule({navigation}) {
                     let newSchedule = schedule;
                     responseData.schedules.forEach(period => {
                         newSchedule[period.day_number-1][period.period-1].class_name = period.class_name;
+                        newSchedule[period.day_number-1][period.period-1].id = period.id;
                         newSchedule[period.day_number-1][period.period-1].request_type = "PUT";
                     });
                     setSchedule(newSchedule);
-                    console.log(newSchedule);
                 }
 
                 setRefreshing(false);
@@ -306,7 +302,6 @@ export default function IndividualSchedule({navigation}) {
             day.forEach((period, period_num) => {
                 // check request type in schedule[day][period]
                 if(period.request_type === "POST") {
-                    console.log("bruh?")
                     // POST
                     fetch(API + "/individual_schedule", {
                         method: "POST",
@@ -335,7 +330,6 @@ export default function IndividualSchedule({navigation}) {
                             setError(true);
                         });
                 } else if(period.request_type === "PUT") {
-                    console.log("not bruh :)")
                     // PUT
                     fetch(API + "/individual_schedule/day/" + (day_num + 1) + "/period/" + (period_num + 1), {
                         method: "PUT",

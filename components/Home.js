@@ -388,7 +388,7 @@ const getPeriod = async day => {
         return -1;
 };
 
-export default async function Home({navigation}) {
+export default function Home({navigation}) {
     const {jwt, setJwt} = useContext(Context);
     const [refreshing, setRefreshing] = useState(false);
     const [day, setDay] = useState("");

@@ -1,5 +1,5 @@
-import {View, RefreshControl, Linking, Image, Dimensions} from "react-native";
-import {Alert, Box, Button, Heading, ScrollView, Stack, Text, VStack, Select} from 'native-base';
+import {Dimensions, Image, Linking, RefreshControl, View} from "react-native";
+import {Alert, Box, Button, Heading, ScrollView, Select, Stack, Text, VStack} from 'native-base';
 import {useContext, useEffect, useState} from "react";
 
 import {API_URL} from '@env';
@@ -14,17 +14,16 @@ if (!API_URL) {
 export default function Home({navigation}) {
     const {jwt, setJwt} = useContext(Context);
     const [refreshing, setRefreshing] = useState(false);
-    const [day, setDay] = useState("");
+    const [day, setDay] = useState(1);
     const [type, setType] = useState("reg");
     const [adverts, setAdverts] = useState([]);
     const [error, setError] = useState(false);
-    const [periodInfo, setPeriodInfo] = useState();
+    const [periodInfo, setPeriodInfo] = useState([]);
 
     useEffect(
         () => {
             navigation.addListener("focus", _ => {
                 setRefreshing(true);
-
                 // schedule
                 fetch(API + "/schedule")
                     .then((resp) => resp.json())
@@ -36,7 +35,8 @@ export default function Home({navigation}) {
                     .finally(() => setRefreshing(false));
 
                 getPeriod(day)
-                    .then(info => setPeriodInfo(info));
+                    .then(info => setPeriodInfo(info))
+                    .catch((error) => setError(true));
 
                 // adverts
                 fetch(API + "/adverts")
@@ -116,7 +116,7 @@ export default function Home({navigation}) {
     // function to get class name
     const getClassName = (day, period) => {
         if(jwt) {
-            const c = fetch(API + "/individual_schedule/day/" + day + "/period/" + period, {
+            return fetch(API + "/individual_schedule/day/" + day + "/period/" + period, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
@@ -139,7 +139,6 @@ export default function Home({navigation}) {
                     // set error state to true and display err
                     setError(true);
                 });
-            return c;
         } else
             return "";
 
@@ -493,6 +492,11 @@ export default function Home({navigation}) {
     return (
         <ScrollView refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={_ => {
+                getPeriod(day).then(info => {
+                    setPeriodInfo(info);
+                }).catch(_ => {
+                    setError(true);
+                });
                 refetchAdverts();
                 refetchDay();
             }}/>
@@ -545,7 +549,7 @@ export default function Home({navigation}) {
                                             <Text bold> no period right now</Text>
                                         ) : (
                                             <> period <Text
-                                                bold>{(periodInfo)[0]} {((periodInfo)[2] !== "") ? (<>({(periodInfo)[2]})</>) : (<></>)}</Text> with <Text
+                                                bold>{(periodInfo)[0]} {((periodInfo)[2] !== "") ? (<>({(periodInfo)[2]}) </>) : (<></>)}</Text>with <Text
                                                 bold>{(periodInfo)[1]} minutes left</Text></>
                                         )}
                                         !</Text>

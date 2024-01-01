@@ -208,7 +208,7 @@ export default function IndividualSchedule({navigation}) {
             let day_component = [];
             day.forEach((period, period_num) => {
                 day_component.push(
-                    <Stack style={{width: "75%"}} key={day.id} direction={"column"} space={3}>
+                    <Stack style={{width: "75%"}} key={period.id} direction={"column"} space={3}>
                         <Box p="2" bg="#E79F2E" _text={{
                             fontSize: 'md',
                             fontWeight: 'medium',

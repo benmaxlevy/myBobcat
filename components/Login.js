@@ -2,6 +2,7 @@ import {useContext, useState} from "react";
 import {Text} from "react-native";
 import {Alert, Box, Button, Divider, Heading, Input, VStack} from 'native-base';
 
+import {setJWT, getJWT} from "../JWTHelper";
 import {Context} from "../Context";
 
 import {API_URL} from '@env';
@@ -39,12 +40,21 @@ export default function Login({navigation}) {
                     return response.json()
             })
             .then((responseData) => {
+                /* replacing context state with AsyncStorage for persistence
                 // set JWT using context state (global)
                 setJwt(prevState => {
                     return {jwt: responseData.jwt, permissions: responseData.permissions, userId: responseData.userId}
                 });
-                // bring to events
-                navigation.navigate('Events');
+                 */
+
+                setJWT({jwt: responseData.jwt, permissions: responseData.permissions, userId: responseData.userId}).then(
+                    () => {
+                        // bring to events
+                        navigation.navigate('Events');
+                    }
+                ).catch(_ => {
+                    setError(true);
+                });
             })
             .catch(err => {
                 // set error state to true and display err

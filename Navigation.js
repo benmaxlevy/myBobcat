@@ -22,7 +22,9 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {Context} from './Context';
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
+import {getJWT, setJWT} from "./JWTHelper";
+
 import ManageAdverts from "./components/ManageAdverts";
 import IndividualSchedule from "./components/IndividualSchedule";
 
@@ -30,7 +32,17 @@ export default function Navigation({navigation}) {
     const Drawer = createDrawerNavigator();
     const windowWidth = Dimensions.get("window").width;
     const windowHeight = Dimensions.get("window").height;
-    const {jwt, setJwt} = useContext(Context);
+    // const {jwt, setJwt} = useContext(Context);
+    const [jwt, setJwt] = useState({});
+
+    // get JWT
+
+    useEffect( () => {
+        getJWT().then(newJwt => {
+            setJwt(newJwt);
+        });
+    });
+
     return (
         <NativeBaseProvider>
             <SafeAreaProvider>

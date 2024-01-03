@@ -28,15 +28,23 @@ export default function Home({navigation}) {
                 fetch(API + "/schedule")
                     .then((resp) => resp.json())
                     .then((json) => {
-                        setDay(json["day"].day);
-                        setType(json["day"].type);
+                        if(json && json["day"]) {
+                            setDay(json["day"].day);
+                            setType(json["day"].type);
+                        }
                     })
-                    .catch((error) => setError(true))
+                    .catch((error) => {
+
+                        setError(true)
+                    })
                     .finally(() => setRefreshing(false));
 
                 getPeriod(day)
                     .then(info => setPeriodInfo(info))
-                    .catch((error) => setError(true));
+                    .catch((error) => {
+
+                        setError(true)
+                    });
 
                 // adverts
                 fetch(API + "/adverts")
@@ -50,7 +58,10 @@ export default function Home({navigation}) {
 
                         setAdverts(tempAdverts);
                     })
-                    .catch(() => setError(true))
+                    .catch(() => {
+
+                        setError(true)
+                    })
                     .finally(() => setRefreshing(false));
             });
         });
@@ -115,7 +126,7 @@ export default function Home({navigation}) {
 
     // function to get class name
     const getClassName = (day, period) => {
-        if(jwt) {
+        if(jwt && !(Object.keys(jwt).length === 0 && jwt.constructor === Object)) {
             return fetch(API + "/individual_schedule/day/" + day + "/period/" + period, {
                 method: "GET",
                 headers: {
@@ -167,8 +178,9 @@ export default function Home({navigation}) {
             time = +(date.getHours() + "." + date.getMinutes());
 
         // check that day is defined
-        if (day === "")
+        if (day === "") {
             refetchDay();
+        }
 
         if (type === "reg") {
             // if between 8:10 and 9:14, return 0
@@ -180,7 +192,6 @@ export default function Home({navigation}) {
 
                 // get difference in minutes between end and current
                 const diff = Math.floor(((periodEnd-date)/1000)/60);
-
                 return [schedule[day][0], diff, await getClassName(day, 1)];
             }
             // if between 9:18 and 10:22, return 1
@@ -216,6 +227,12 @@ export default function Home({navigation}) {
 
                 // get difference in minutes between end and current
                 const diff = Math.floor(((periodEnd-date)/1000)/60);
+
+                try {
+                    await getClassName(day, 4)
+                } catch (e) {
+                    console.log(JSON.stringify(e));
+                }
 
                 return [schedule[day][3], diff, await getClassName(day, 4)];
             }

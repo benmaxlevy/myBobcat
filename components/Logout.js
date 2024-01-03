@@ -4,8 +4,16 @@ import {Context} from "../Context";
 
 export default function Logout({ navigation }) {
     const { jwt, setJwt } = useContext(Context);
-    useEffect(() => {
-        setJwt(prevState => undefined);
-        return navigation.navigate('Home');
-    }, []);
+    // useEffect(() => {
+    //     setJwt(prevState => {
+    //         console.log("ugh")
+    //         return {};
+    //     });
+    //     return navigation.navigate('Home');
+    // }, []);
+
+    setJwt(prevState => {
+        return {};
+    });
+    return navigation.navigate('Home');
 }

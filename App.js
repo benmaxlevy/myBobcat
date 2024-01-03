@@ -12,8 +12,9 @@ export default function App() {
     const Drawer = createDrawerNavigator();
     const windowWidth = Dimensions.get("window").width;
     const { jwt, setJwt } = useContext(Context);
+
     return (
-        <ContextProvider>
+        <ContextProvider value={jwt}>
             <Navigation/>
         </ContextProvider>
     );

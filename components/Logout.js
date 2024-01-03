@@ -1,9 +1,11 @@
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 
-import {deleteJWT} from "../JWTHelper";
+import {Context} from "../Context";
 
 export default function Logout({ navigation }) {
-    deleteJWT().then(() => {
-        navigation.navigate('Home');
-    });
+    const { jwt, setJwt } = useContext(Context);
+    useEffect(() => {
+        setJwt(prevState => undefined);
+        return navigation.navigate('Home');
+    }, []);
 }

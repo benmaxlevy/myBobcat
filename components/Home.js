@@ -139,9 +139,9 @@ export default function Home({navigation}) {
                     // set error state to true and display err
                     setError(true);
                 });
-        } else {
+        } else
             return "";
-        }
+
     };
 
     const getPeriod = async day => {

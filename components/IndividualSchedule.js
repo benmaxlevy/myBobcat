@@ -204,11 +204,14 @@ export default function IndividualSchedule({navigation}) {
         // create all the day components
         let day_components = [];
 
+        // define counter for key if !period.id
+        let counter = 0;
+
         schedule.forEach((day, day_num) => {
             let day_component = [];
             day.forEach((period, period_num) => {
                 day_component.push(
-                    <Stack style={{width: "75%"}} key={period.id} direction={"column"} space={3}>
+                    <Stack style={{width: "75%"}} key={(period.id) ? period.id : counter} direction={"column"} space={3}>
                         <Box p="2" bg="#E79F2E" _text={{
                             fontSize: 'md',
                             fontWeight: 'medium',
@@ -243,6 +246,9 @@ export default function IndividualSchedule({navigation}) {
                         </Box>
                     </Stack>
                 );
+
+                // increment "backup" counter
+                ++counter;
             });
 
             day_components.push(

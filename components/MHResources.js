@@ -80,9 +80,23 @@ export default function MHResources({navigation}) {
                         fontWeight: 'medium',
                         color: 'warmGray.50',
                         letterSpacing: 'lg'
-                    }} shadow={2}>
-                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>
-                            Call (877) 846-7369 or text HOPENY (467369) for help 24 hours a day
+                    }} style={{alignItems: "center", justifyContent: "center"}} shadow={2}>
+                        <Heading size="md" style={{textAlign: "center", color: "white"}}>Helplines</Heading>
+                        <Divider style={{marginVertical: 3}}/>
+                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white", marginBottom: 5}}>
+                            911 in any emergency
+                        </Text>
+                        <Divider style={{marginVertical: 0, width: "70%"}}/>
+                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white", marginVertical: 5}}>
+                            988 Suicide & Crisis Lifeline
+                        </Text>
+                        <Divider style={{marginVertical: 0, width: "70%"}}/>
+                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white", marginVertical: 5}}>
+                            Crisis Prevention and Response Team at (914) 925-5959
+                        </Text>
+                        <Divider style={{marginVertical: 0, width: "70%"}}/>
+                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white", marginVertical: 5}}>
+                            Call (877) 846-7369 {"\n"} or text HOPENY (467369)
                         </Text>
                     </Box>
                     <Box p="2" bg="#9A1C1F" _text={{
@@ -90,30 +104,13 @@ export default function MHResources({navigation}) {
                         fontWeight: 'medium',
                         color: 'warmGray.50',
                         letterSpacing: 'lg'
-                    }} shadow={2}>
-                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>
-                            In the event of a psychiatric emergency, you can call: {"\n"}
-                            - Call 911 in any emergency {"\n"}
-                            - 988 Suicide & Crisis Lifeline {"\n"}
-                            - Crisis Prevention and Response Team at (914) 925-5959
+                    }} style={{alignItems: "center", justifyContent: "center"}} shadow={2}>
+                        <Heading size="md" style={{textAlign: "center", color: "white"}}>Other</Heading>
+                        <Divider style={{marginVertical: 3}}/>
+                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white", marginBottom: 5}}>
+                            Call (914) 592-5458 {"\n"} National Alliance on Mental Health Helpline for resources {"\n"} 9am-2pm, Monday-Friday
                         </Text>
-                    </Box>
-                    <Box p="2" bg="#9A1C1F" _text={{
-                        fontSize: 'md',
-                        fontWeight: 'medium',
-                        color: 'warmGray.50',
-                        letterSpacing: 'lg'
-                    }} shadow={2}>
-                        <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>
-                            Call (914) 592-5458 National Alliance on Mental Health Helpline for resources, 9am-2pm, Monday-Friday
-                        </Text>
-                    </Box>
-                    <Box p="2" bg="#9A1C1F" _text={{
-                        fontSize: 'md',
-                        fontWeight: 'medium',
-                        color: 'warmGray.50',
-                        letterSpacing: 'lg'
-                    }} shadow={2}>
+                        <Divider style={{marginVertical: 0, width: "70%"}}/>
                         <Text fontSize={"lg"} style={{textAlign: "center", color: "white"}}>
                             New York State Office of Addiction Services and Supports (OASAS): oasas.ny.gov
                         </Text>

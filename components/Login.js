@@ -40,9 +40,7 @@ export default function Login({navigation}) {
             })
             .then((responseData) => {
                 // set JWT using context state (global)
-                setJwt(prevState => {
-                    return {jwt: responseData.jwt, permissions: responseData.permissions, userId: responseData.userId}
-                });
+                setJwt({jwt: responseData.jwt, permissions: responseData.permissions, userId: responseData.userId});
                 // bring to events
                 navigation.navigate('Events');
             })

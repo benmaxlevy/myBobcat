@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Context = React.createContext('');
+
+let i = 0;
+
 export const ContextProvider = ({ children }) => {
     const [jwt, setJwt] = useState();
 
@@ -9,27 +12,24 @@ export const ContextProvider = ({ children }) => {
     useEffect( () => {
         AsyncStorage.getItem("jwt").then(newStringJwt => {
             // make sure the jwt exists in storage
+            console.log("async jwt: " + newStringJwt);
             if (newStringJwt) {
                 // parse the string JSON into obj
                 setJwt(JSON.parse(newStringJwt));
             }
         });
-    });
+    }, []);
 
     // useEffect to update value of jwt in async storage
     useEffect( () => {
-        console.log("updating: " + JSON.stringify(jwt));
-        // if defined, set; else, remove
-        if(jwt && !(Object.keys(jwt).length === 0 && jwt.constructor === Object)) {
-            console.log(jwt)
-            // stringify for storage
-            const stringJwt = JSON.stringify(jwt);
-            // store
-            AsyncStorage.setItem("jwt", stringJwt).catch(e => console.log(e));
-        } else {
-            console.log("h")
-            AsyncStorage.removeItem("jwt").catch(e => console.log(e));
-        }
+        // stringify for storage
+        let stringJwt = JSON.stringify(jwt);
+
+        if(stringJwt === undefined)
+            stringJwt = "{}";
+
+        // store
+        AsyncStorage.setItem("jwt", stringJwt).catch(e => console.log(e));
     }, [jwt]);
 
     return (

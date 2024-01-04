@@ -176,9 +176,7 @@ export default function Navigation({navigation}) {
                                 <DrawerItemList {...props} />
                                 {(jwt && !(Object.keys(jwt).length === 0 && jwt.constructor === Object)) ? (
                                     <DrawerItem label="Logout" onPress={() => {
-                                        setJwt(prevState => {
-                                            return {};
-                                        });
+                                        setJwt({});
                                         props.navigation.navigate("Home");
                                     }} />
                                 ): (<></>)}

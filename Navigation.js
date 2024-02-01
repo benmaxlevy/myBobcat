@@ -121,7 +121,7 @@ export default function Navigation({navigation}) {
 
     const studentAdminProtected = () => {
         if(jwt && !(Object.keys(jwt).length === 0 && jwt.constructor === Object)) {
-            if(jwt.permissions !== "admin") {
+            if(jwt.permissions === "admin" || jwt.permissions === "leader") {
                 return (
                     <Drawer.Screen
                         name="Event Requests"
